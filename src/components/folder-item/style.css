@@ -1,0 +1,10 @@
+.folderIcon {
+    font-size: 25px;
+}
+.folderTitle {
+    white-space: nowrap;
+    font-size: 15px;
+    font-weight: bold;
+    overflow: hidden; 
+    text-overflow: ellipsis
+}

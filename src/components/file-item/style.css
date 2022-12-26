@@ -1,0 +1,10 @@
+.fileIcon {
+    font-size: 25px;
+}
+.fileTitle {
+    white-space: nowrap;
+    font-size: 15px;
+    font-weight: bold;
+    overflow: hidden; 
+    text-overflow: ellipsis
+}

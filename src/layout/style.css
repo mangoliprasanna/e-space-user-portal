@@ -1,0 +1,13 @@
+.buttonIcon {
+    font-size: 15px;
+    margin-right: 10px;
+}
+
+.pl-0 {
+    padding-left: 0;
+}
+
+.buttonTxt {
+    font-size: 15px;
+    font-weight: bold;
+}
