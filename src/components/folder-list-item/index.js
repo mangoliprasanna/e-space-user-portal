@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+import { setSelectedItem } from '../../redux/reducers/browser.reducer';
+import { objectByCode } from '../../redux/reducers/object.reducer';
 import { PATH_DASHBOARD } from '../../routes/paths';
 import getIconFromType from '../../utils/typeToIcon.utils';
 import DropdownOptions from '../dropdown';
 import '../style.css'
 
-const FolderListItem = ({ config }) => {
+const FolderListItem = ({ code }) => {
   const navigate = useNavigate();
-  const [isActive, setActive] = useState(false);
+  const dispatch = useDispatch();
+  const config = useSelector(state => objectByCode(code, state));
   const [context, setContext] = useState();
 
   const handleContextMenu = (e) => {
@@ -17,6 +21,7 @@ const FolderListItem = ({ config }) => {
 
   const handleClick = () => {
     setContext();
+    dispatch(setSelectedItem(code));
   };
 
   return (

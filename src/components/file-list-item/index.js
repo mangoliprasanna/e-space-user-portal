@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSelectedItem } from '../../redux/reducers/browser.reducer';
+import { objectByCode } from '../../redux/reducers/object.reducer';
 import getIconFromType from '../../utils/typeToIcon.utils';
 import DropdownOptions from '../dropdown';
 import '../style.css'
 
-const FileListItem = ({ config }) => {
-
-  const [isActive, setActive] = useState(false);
+const FileListItem = ({ code }) => {
+  const dispatch = useDispatch();
+  const config = useSelector(state => objectByCode(code, state));
   const [context, setContext] = useState();
 
   const handleContextMenu = (e) => {
@@ -15,6 +18,7 @@ const FileListItem = ({ config }) => {
 
   const handleClick = (event) => {
     setContext();
+    dispatch(setSelectedItem(code));
   };
 
   return (

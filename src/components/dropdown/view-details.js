@@ -5,7 +5,7 @@ import { setSelectedItem } from '../../redux/reducers/browser.reducer';
 function ViewDetails({ closeMenu, config }) {
   const dispatch = useDispatch();
   const onClick = () => {
-    dispatch(setSelectedItem(config));
+    dispatch(setSelectedItem(config.code));
     closeMenu();
   };
 

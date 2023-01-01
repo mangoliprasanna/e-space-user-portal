@@ -4,7 +4,6 @@ import Header from './header';
 
 import NavigationMenu from './navigation-menu';
 
-import Footer from './footer';
 import InfoMenu from './info-menu';
 
 export default function DashboardLayout() {

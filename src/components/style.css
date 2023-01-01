@@ -5,7 +5,10 @@
     border: 1px solid rgba(0, 0, 0, 0.15);
     background: white;
     padding: 12px;
-    cursor: pointer;
+    cursor: default;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     align-items: center;
     margin-bottom: 8px;
 }
@@ -57,7 +60,10 @@
 
 .object-dropdown-menu>li>div {
     display: block;
-    cursor: pointer;
+    cursor: default;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     padding: 4px 16px;
     clear: both;
     font-weight: 400;

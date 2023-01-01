@@ -3,8 +3,8 @@ html {
 }
 
 .control-sidebar{
-    width: 300px;
-    right: -300px;
+    width: 250px;
+    right: -250px;
 }
 
 .buttonIcon {
@@ -18,22 +18,5 @@ html {
 
 .buttonTxt {
     font-size: 15px;
-    font-weight: bold;
-}
-
-.info-menu {
-    overflow: hidden;
-}
-
-.info-menu-body {
-    padding: 10px;
-}
-
-.info-menu-object-icon {
-    font-size: 80px;
-}
-
-
-.info-menu-title {
     font-weight: bold;
 }

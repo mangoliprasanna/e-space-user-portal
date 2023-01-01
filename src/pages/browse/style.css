@@ -4,7 +4,7 @@
 }
 
 .browser-view-switcher {
-    font-size: 25px;
+    font-size: 18px;
     cursor: pointer;
 }
 
@@ -16,7 +16,6 @@
 }
 
 .browser-empty-box .body {
-    
     text-align: center;
     display: table-cell;
     color: grey;
@@ -31,4 +30,12 @@
     font-size: 20px;
     font-weight: bold;
     margin-top: 50px;
+}
+
+.breadcrumb {
+    margin-bottom: 0px;
+}
+
+.breadcrumb a {
+    cursor: pointer;
 }
