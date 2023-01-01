@@ -39,7 +39,7 @@ function Router() {
           element: <Browse />,
         },
         {
-          path: PATH_DASHBOARD.browseFolder,
+          path: PATH_DASHBOARD.browseFolder(),
           element: <Browse />,
         },
       ],
