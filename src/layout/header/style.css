@@ -1,0 +1,37 @@
+html {
+    background-color: #ecf0f5;
+}
+
+.control-sidebar {
+    width: 250px;
+    right: -250px;
+}
+
+.buttonIcon {
+    font-size: 15px;
+    margin-right: 10px;
+}
+
+.pl-0 {
+    padding-left: 0;
+}
+
+.buttonTxt {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.modal-content {
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    border-radius: 16px;
+    background-color: rgb(238, 237, 237);
+}
+
+.modal-content .form-group {
+    width: 100%;
+}
+
+.modal-content .form-group .form-control {
+    width: 100%;
+}

@@ -13,7 +13,6 @@ const initialState = {
   isLoading: true,
   hasError: false,
   isEmpty: true,
-
 }
 
 export const browserSlice = createSlice({
@@ -59,10 +58,21 @@ export const browserSlice = createSlice({
       state.hasError = initialState.hasError;
       state.isEmpty = initialState.isEmpty;
     },
+    pushFolder: (state, action) => {
+      state.currentFolder.folders.push(action.payload);
+      state.isEmpty = state.currentFolder.files.length === 0 && state.currentFolder.folders.length === 0
+    }
   },
 })
 
-export const { resetBrowser, setContent, setLoading, setSelectedItem, setError, browserStackPop } = browserSlice.actions
+export const {
+  resetBrowser,
+  setContent,
+  pushFolder,
+  setLoading,
+  setSelectedItem,
+  setError,
+  browserStackPop } = browserSlice.actions
 
 export function browse(key) {
 
@@ -98,10 +108,25 @@ export function browse(key) {
   }
 }
 
+export function createFolder(name, code) {
+  return async (dispatch) => {
+    try {
+      dispatch(setLoading(true));
+      const res = await BrowserService.createFolder(name, code);
+      dispatch(objectAppend({
+        [res.code]: res
+      }));
+      dispatch(pushFolder(res.code));
+    } catch (e) {
+      dispatch(setError(true));
+    }
+  }
+}
+
 export const currentFolderState = (state) => state.browser;
 
 export const browserStack = (state) => state.browser.stack;
 
-export const infoMenuItem = (state) => state.objects.rawData[state.browser.selectedItemKey] ;
+export const infoMenuItem = (state) => state.objects.rawData[state.browser.selectedItemKey];
 
 export default browserSlice.reducer;
