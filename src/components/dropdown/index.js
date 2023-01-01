@@ -1,69 +1,71 @@
 import React from 'react'
+import ViewDetails from './view-details'
 
-function DropdownOptions() {
+function DropdownOptions({ config, context, closeMenu, position }) {
   return (
     <>
-      <div className="dropdown">
-        <button className="btn-link dropdown-toggle text-black" type="button" data-toggle="dropdown">
-          <i className="fa fa-ellipsis-v" aria-hidden="true" />
-        </button>
-        <ul className="dropdown-menu">
+      {context ? <div
+        style={{
+          left: position.x,
+          top: position.y,
+        }}
+        className='rightClick'>
+        <ul className="object-dropdown-menu">
           <li>
-            <a href="#">
+            <div onClick={closeMenu}>
               <i className="fa fa-link" />
               Get Link
-            </a>
+            </div>
           </li>
           <li>
-            <a href="#">
+            <div>
               <i className="fa fa-star-o" />
               Add Starred
-            </a>
+            </div>
           </li>
           <li>
-            <a href="#">
+            <div>
               <i className="fa fa-star" />
               Remove Starred
-            </a>
+            </div>
           </li>
           <li>
-            <a href="#">
+            <div>
               <i className="fa fa-pencil" />
               Rename
-            </a>
+            </div>
           </li>
           <li>
-            <a href="#">
+            <div>
               <i className="fa fa-share" />
               Share
-            </a>
+            </div>
           </li>
           <li className="divider" />
-          <li data-toggle="control-sidebar">
-            <a href="#">
-              <i className="fa fa-info-circle" /> View Details
-            </a>
-          </li>
+          <ViewDetails 
+            closeMenu={closeMenu} 
+            config={config} />
           <li>
-            <a href="#">
-              <i className="fa fa-download" /> Download
-            </a>
+            <div>
+              <i className="fa fa-download" />
+              Download
+            </div>
           </li>
           <li className="divider" />
           <li>
-            <a href="#">
+            <div>
               <i className="fa fa-trash" />
               Trash
-            </a>
+            </div>
           </li>
           <li>
-            <a href="#">
+            <div>
               <i className="fa fa-trash" />
               Delete Forever
-            </a>
+            </div>
           </li>
         </ul>
-      </div>
+      </div> : <></>}
     </>
   )
 }

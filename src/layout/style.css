@@ -1,3 +1,12 @@
+html {
+    background-color: #ecf0f5;
+}
+
+.control-sidebar{
+    width: 300px;
+    right: -300px;
+}
+
 .buttonIcon {
     font-size: 15px;
     margin-right: 10px;
@@ -9,5 +18,22 @@
 
 .buttonTxt {
     font-size: 15px;
+    font-weight: bold;
+}
+
+.info-menu {
+    overflow: hidden;
+}
+
+.info-menu-body {
+    padding: 10px;
+}
+
+.info-menu-object-icon {
+    font-size: 80px;
+}
+
+
+.info-menu-title {
     font-weight: bold;
 }

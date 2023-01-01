@@ -38,6 +38,10 @@ function Router() {
           path: PATH_DASHBOARD.browse,
           element: <Browse />,
         },
+        {
+          path: PATH_DASHBOARD.browseFolder,
+          element: <Browse />,
+        },
       ],
     },
     {
