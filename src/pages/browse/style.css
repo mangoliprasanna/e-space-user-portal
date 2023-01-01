@@ -1,0 +1,41 @@
+.object-item-title {
+    padding-bottom: 8px;
+    font-weight: bold;
+}
+
+.browser-view-switcher {
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.browser-empty-box {
+    width: 100%;
+    height: 100%;
+    display: table;
+    margin-top: 100px;
+}
+
+.browser-empty-box .body {
+    text-align: center;
+    display: table-cell;
+    color: grey;
+    vertical-align: middle;
+}
+
+.browser-empty-box-icon {
+    font-size: 150px;
+}
+
+.browser-empty-box-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 50px;
+}
+
+.breadcrumb {
+    margin-bottom: 0px;
+}
+
+.breadcrumb a {
+    cursor: pointer;
+}

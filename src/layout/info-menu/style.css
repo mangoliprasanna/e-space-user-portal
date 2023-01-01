@@ -1,0 +1,31 @@
+.info-menu {
+    overflow: hidden;
+}
+
+.info-menu-body {
+    padding: 16px;
+    padding-bottom: 0px;
+}
+
+.info-menu-object-icon {
+    font-size: 80px;
+}
+.info-menu-divider {
+    border-top: 1px solid rgb(211, 211, 211);
+}
+.info-menu-title {
+    font-weight: bold;
+    margin-top: 12px;
+}
+.info-menu-close-icon {
+    font-size: 20px;
+    color: black;
+    margin: 10px;
+}
+.info-menu-empty {
+    margin-top: 50%;
+}
+.info-menu-empty-icon {
+    margin-bottom: 20px;
+    font-size: 50px;
+}

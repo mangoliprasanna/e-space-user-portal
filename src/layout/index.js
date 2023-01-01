@@ -4,11 +4,10 @@ import Header from './header';
 
 import NavigationMenu from './navigation-menu';
 
-import Footer from './footer';
 import InfoMenu from './info-menu';
 
 export default function DashboardLayout() {
-  document.body.className = 'skin-black-light sidebar-mini';
+  document.body.className = 'fixed skin-black-light sidebar-mini';
   return (
     <div>
       <div className="wrapper">
@@ -21,9 +20,6 @@ export default function DashboardLayout() {
           <Outlet />
           <InfoMenu />
         </div>
-
-        {/* fixed footer */}
-        <Footer />
       </div>
     </div>
   );
