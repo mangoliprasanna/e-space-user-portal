@@ -42,10 +42,11 @@ export function createFolderApiCall(name, code) {
     try {
       dispatch(setFolderLoading(true));
       const res = await BrowserService.createFolder(name, code || 'root');
+      const { result } = res;
       dispatch(objectAppend({
-        [res.code]: res
+        [result.code]: result
       }));
-      dispatch(pushFolder(res.code));
+      dispatch(pushFolder(result.code));
       dispatch(setFolderLoading(false));
     } catch (e) {
       dispatch(setFolderError(true));
