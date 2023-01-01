@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router";
-import useAuth from "../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
+import NewFolderButton from "./new-folder";
 
 import './style.css';
 
@@ -30,14 +31,7 @@ export default function Header() {
 						<span className="icon-bar" />
 					</a>
 					<div className="navbar-form navbar-left hidden-xs">
-						<button type="button" className="btn btn-block btn-primary">
-							<span className="buttonIcon">
-								<i className="fa fa-plus" />
-							</span>
-							<span className="buttonTxt">
-								New Folder
-							</span>
-						</button>
+						<NewFolderButton />
 					</div>
 					<div className="navbar-form navbar-left hidden-xs pl-0">
 						<button type="button" className="btn btn-block btn-success">
