@@ -70,43 +70,62 @@ export function createFolderApiCall(name, code) {
 
 export function updateFolderApiCall(code, props) {
   return async (dispatch) => {
-    const res = await BrowserService.updateFolder(code, props);
-    const { result } = res;
-    if (props && props.isTrash === true) {
-      dispatch(popFolder(result.code));
-      result.isTrash = true;
+    try {
+      dispatch(setFolderLoading(true));
+      const res = await BrowserService.updateFolder(code, props);
+      dispatch(setFolderLoading(false));
+      const { result } = res;
+      if (props && props.isTrash === true) {
+        dispatch(popFolder(result.code));
+        result.isTrash = true;
+      }
+      dispatch(objectAppend({
+        [result.code]: result
+      }));
+    } catch (e) {
+      dispatch(setFolderLoading(false));
+      throw e;
     }
-    dispatch(objectAppend({
-      [result.code]: result
-    }));
+
   }
 };
 
 export function renameFolderApiCall(code, name) {
   return async (dispatch) => {
-    dispatch(setFolderLoading(true));
-    const res = await BrowserService.renameFolder(code, name);
-    dispatch(setFolderLoading(false));
-    const { result } = res;
-    dispatch(objectAppend({
-      [result.code]: result
-    }));
+    try {
+      dispatch(setFolderLoading(true));
+      const res = await BrowserService.renameFolder(code, name);
+      dispatch(setFolderLoading(false));
+      const { result } = res;
+      dispatch(objectAppend({
+        [result.code]: result
+      }));
+    } catch (e) {
+      dispatch(setFolderLoading(false));
+      throw e;
+    }
   }
 };
 
 export function updateFileApiCall(code, props) {
   return async (dispatch) => {
-    dispatch(setFolderLoading(true));
-    const res = await BrowserService.updateFile(code, props);
-    dispatch(setFolderLoading(false));
-    const { result } = res;
-    if (props && props.isTrash === true) {
-      dispatch(popFile(result.code));
-      result.isTrash = true;
+
+    try {
+      dispatch(setFileLoading(true));
+      const res = await BrowserService.updateFile(code, props);
+      dispatch(setFileLoading(false));
+      const { result } = res;
+      if (props && props.isTrash === true) {
+        dispatch(popFile(result.code));
+        result.isTrash = true;
+      }
+      dispatch(objectAppend({
+        [result.code]: result
+      }));
+    } catch (e) {
+      dispatch(setFileLoading(false));
+      throw e;
     }
-    dispatch(objectAppend({
-      [result.code]: result
-    }));
   }
 };
 
@@ -114,13 +133,13 @@ export function renameFileApiCall(code, name) {
   return async (dispatch) => {
     try {
       dispatch(setFileLoading(true));
-    const res = await BrowserService.renameFile(code, name);
-    dispatch(setFileLoading(false));
-    const { result } = res;
-    dispatch(objectAppend({
-      [result.code]: result
-    }));
-    } catch(e) {
+      const res = await BrowserService.renameFile(code, name);
+      dispatch(setFileLoading(false));
+      const { result } = res;
+      dispatch(objectAppend({
+        [result.code]: result
+      }));
+    } catch (e) {
       dispatch(setFileLoading(false));
       throw e;
     }
