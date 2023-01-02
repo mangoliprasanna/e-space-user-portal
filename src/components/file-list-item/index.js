@@ -28,7 +28,6 @@ const FileListItem = ({ code }) => {
         setContext={setContext}
         config={config}
       />
-
       <div
         className="col-lg-3 col-md-4 col-xs-6"
         onContextMenu={handleContextMenu}

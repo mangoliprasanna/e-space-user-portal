@@ -5,6 +5,7 @@ import Header from './header';
 import NavigationMenu from './navigation-menu';
 
 import InfoMenu from './info-menu';
+import GlobalModal from './modal';
 
 export default function DashboardLayout() {
   document.body.className = 'fixed skin-black-light sidebar-mini';
@@ -15,6 +16,8 @@ export default function DashboardLayout() {
         <Header />
         {/* Left side column. contains the sidebar */}
         <NavigationMenu />
+
+        <GlobalModal />
         {/* Content Wrapper. Contains page content */}
         <div className="content-wrapper">
           <Outlet />
