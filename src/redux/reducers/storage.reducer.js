@@ -53,7 +53,27 @@ export function createFolderApiCall(name, code) {
       throw e;
     }
   }
-}
+};
+
+export function updateFolderApiCall(code, props) {
+  return async (dispatch) => {
+    const res = await BrowserService.updateFolder(code, props);
+    const { result } = res;
+    dispatch(objectAppend({
+      [result.code]: result
+    }));
+  }
+};
+
+export function updateFileApiCall(code, props) {
+  return async (dispatch) => {
+    const res = await BrowserService.updateFile(code, props);
+    const { result } = res;
+    dispatch(objectAppend({
+      [result.code]: result
+    }));
+  }
+};
 
 export const folderState = (state) => state.storage.folder;
 

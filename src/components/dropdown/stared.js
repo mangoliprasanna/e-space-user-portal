@@ -1,11 +1,16 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
+import { updateFileApiCall, updateFolderApiCall } from '../../redux/reducers/storage.reducer';
 import { setSelectedItem } from '../../redux/reducers/browser.reducer';
 
 function StarItem({ closeMenu, config }) {
   const dispatch = useDispatch();
   const onClick = () => {
-    dispatch(setSelectedItem(config));
+    if(config.type) {
+      dispatch(updateFileApiCall(config.code, { isStared: !config.isStared }));
+    } else {
+      dispatch(updateFolderApiCall(config.code, { isStared: !config.isStared }));
+    }
     closeMenu();
   };
 
