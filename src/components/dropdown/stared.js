@@ -1,15 +1,26 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { updateFileApiCall, updateFolderApiCall } from '../../redux/reducers/storage.reducer';
-import { setSelectedItem } from '../../redux/reducers/browser.reducer';
+import ToastHelper from '../../utils/toast.utils';
 
 function StarItem({ closeMenu, config }) {
   const dispatch = useDispatch();
   const onClick = () => {
-    if(config.type) {
-      dispatch(updateFileApiCall(config.code, { isStared: !config.isStared }));
+    const msg = `${config.isStared ? 'Removed from' : "Added to"} Starred`;
+    const error = `Unable to complete request!`;
+    if (config.type) {
+      ToastHelper.promise(
+        dispatch(updateFileApiCall(config.code, { isStared: !config.isStared })),
+        msg,
+        error
+      );
     } else {
-      dispatch(updateFolderApiCall(config.code, { isStared: !config.isStared }));
+      ToastHelper.promise(
+        dispatch(updateFolderApiCall(config.code, { isStared: !config.isStared })),
+        msg,
+        error
+      );
+
     }
     closeMenu();
   };
