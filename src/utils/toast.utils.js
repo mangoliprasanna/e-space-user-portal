@@ -1,7 +1,7 @@
 import toast from 'react-hot-toast';
 
 const defaultSettings = {
-  posotion: 'top-right',
+  position: 'top-right',
 }
 
 const ToastHelper = {
@@ -11,12 +11,12 @@ const ToastHelper = {
   error: (msg, settings = defaultSettings) => {
     toast.error(msg, settings);
   },
-  promise: (promise, success, error) => {
+  promise: (promise, success, error, settings = defaultSettings) => {
     toast.promise(promise, {
       loading: 'Working...',
       success,
       error,
-    });
+    }, settings);
   }
 }
 
