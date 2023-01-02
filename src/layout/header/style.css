@@ -21,6 +21,10 @@ html {
     font-weight: bold;
 }
 
+.buttonTxt input {
+    display: none;
+}
+
 .modal-content {
     -webkit-border-radius: 16px;
     -moz-border-radius: 16px;

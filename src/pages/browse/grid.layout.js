@@ -11,7 +11,7 @@ const FolderView = ({ folders }) => {
         Folders
       </p>
       <div className='row'>
-        {folders.map((e) => <FolderListItem code={e} />)}
+        {folders.map((e) => <FolderListItem key={e} code={e} />)}
       </div>
 
     </>
@@ -26,7 +26,7 @@ const FileView = ({ files }) => {
         Files
       </p>
       <div className='row'>
-        {files.map((e) => <FileListItem code={e} />)}
+        {files.map((e) => <FileListItem key={e} code={e} />)}
       </div>
 
     </>

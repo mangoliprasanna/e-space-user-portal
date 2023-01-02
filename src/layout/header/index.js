@@ -3,6 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import NewFolderButton from "./new-folder";
 
 import './style.css';
+import UploadFileButton from "./upload";
 
 export default function Header() {
 	const { user } = useAuth();
@@ -34,14 +35,7 @@ export default function Header() {
 						<NewFolderButton />
 					</div>
 					<div className="navbar-form navbar-left hidden-xs pl-0">
-						<button type="button" className="btn btn-block btn-success">
-							<span className="buttonIcon">
-								<i className="fa fa-upload" />
-							</span>
-							<span className="buttonTxt">
-								Upload
-							</span>
-						</button>
+						<UploadFileButton />
 					</div>
 					<div className="navbar-custom-menu">
 						<ul className="nav navbar-nav">
