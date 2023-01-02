@@ -10,6 +10,8 @@ const getIconFromType = (type) => {
     case 'image/svg+xml':
     case 'image/png':
       return 'fa fa-picture-o';
+		case 'audio/mpeg':
+			return 'fa fa-file-audio-o';
     case 'application/pdf':
       return 'fa fa-file-pdf-o';
     case 'application/vnd.ms-excel':

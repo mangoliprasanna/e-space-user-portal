@@ -150,6 +150,6 @@ export const folderState = (state) => state.storage.folder;
 
 export const fileState = (state) => state.storage.file;
 
-export const getCurrentFolderCode = (state) => state.browser.currentFolder.code;
+export const getCurrentFolderCode = (state) => state.browser.currentFolder.code || 'root';
 
 export default storageSlice.reducer;

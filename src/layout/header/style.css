@@ -21,6 +21,12 @@ html {
     font-weight: bold;
 }
 
+.upload-item {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
 .buttonTxt input {
     display: none;
 }

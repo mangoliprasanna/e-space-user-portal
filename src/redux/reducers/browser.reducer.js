@@ -62,6 +62,10 @@ export const browserSlice = createSlice({
       state.currentFolder.folders.push(action.payload);
       state.isEmpty = state.currentFolder.files.length === 0 && state.currentFolder.folders.length === 0
     },
+    pushFile: (state, action) => {
+      state.currentFolder.files.push(action.payload);
+      state.isEmpty = state.currentFolder.files.length === 0 && state.currentFolder.folders.length === 0
+    },
     popFolder: (state, action) => {
       const i = state.currentFolder.folders.indexOf(action.payload);
       if (i !== -1) {
@@ -82,13 +86,13 @@ export const browserSlice = createSlice({
 export const {
   resetBrowser,
   setContent,
+  pushFile,
   pushFolder,
   popFolder,
   popFile,
   setLoading,
   setSelectedItem,
   setError,
-
   browserStackPop } = browserSlice.actions
 
 export function browse(key) {

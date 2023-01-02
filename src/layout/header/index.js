@@ -4,6 +4,7 @@ import NewFolderButton from "./new-folder";
 
 import './style.css';
 import UploadFileButton from "./upload";
+import UploadProgressDropdown from "./upload/upload-progress-dropdown";
 
 export default function Header() {
 	const { user } = useAuth();
@@ -39,34 +40,7 @@ export default function Header() {
 					</div>
 					<div className="navbar-custom-menu">
 						<ul className="nav navbar-nav">
-							<li className="dropdown tasks-menu">
-								<a href="#" className="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-									<span className="buttonIcon">
-										<i className="fa fa-refresh fa-spin" />
-									</span>
-									Uploading item
-								</a>
-								<ul className="dropdown-menu">
-									<li className="header">Uploading 7 items</li>
-									<li>
-										<ul className="menu">
-											<li>
-												<a href="#">
-													<h3>
-														Filename.jpg
-														<small className="pull-right">30%</small>
-													</h3>
-													<div className="progress xs">
-														<div className="progress-bar progress-bar-aqua" style={{ width: '10%' }}>
-															<span className="sr-only">20% Complete</span>
-														</div>
-													</div>
-												</a>
-											</li>
-										</ul>
-									</li>
-								</ul>
-							</li>
+							<UploadProgressDropdown />
 							<li className="dropdown user user-menu">
 								<a href="#" className="dropdown-toggle" data-toggle="dropdown">
 									<img src={user.avatar ? user.avatar : '/assets/img/user/no_user.jpg'} className="user-image" alt="user-image-2" />
@@ -97,8 +71,6 @@ export default function Header() {
 								</ul>
 							</li>
 						</ul>
-
-
 					</div>
 				</nav>
 			</header>
