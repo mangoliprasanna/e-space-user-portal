@@ -2,30 +2,29 @@ import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import React, { useState } from 'react'
+import React from 'react'
 import Spinner from '../../components/spinner'
 import './style.css'
 
-import { 
+import {
   createFolderApiCall,
   folderState,
-  getCurrentFolderCode 
+  getCurrentFolderCode
 } from '../../redux/reducers/storage.reducer';
 
+import { hideModal, showModal } from '../../redux/reducers/modal.reducer';
 
 const NewFolderForm = ({ closeModel }) => {
-
   const dispatch = useDispatch();
   const currentFolderCode = useSelector(getCurrentFolderCode);
-
+  const { isLoading } = useSelector(folderState);
   const createNewFolder = ({ folderName }) => {
     dispatch(createFolderApiCall(folderName, currentFolderCode))
       .then(() => closeModel());
   }
-
   const formik = useFormik({
     initialValues: {
-      folderName: '',
+      folderName: 'Untitled Folder',
     },
     validationSchema: Yup.object({
       folderName: Yup.string()
@@ -34,6 +33,12 @@ const NewFolderForm = ({ closeModel }) => {
     }),
     onSubmit: createNewFolder,
   });
+
+  if (isLoading === true) {
+    return (
+      <Spinner />
+    );
+  }
 
   return (
     <>
@@ -48,6 +53,7 @@ const NewFolderForm = ({ closeModel }) => {
               placeholder='Folder Name'
               className="form-control"
               autoComplete={false}
+              autoFocus
               {...formik.getFieldProps('folderName')}
             />
             {formik.errors.folderName ? <span className="help-block">{formik.errors.folderName}</span> : null}
@@ -71,14 +77,19 @@ NewFolderForm.propTypes = {
 };
 
 function NewFolderButton() {
-
-  const { isLoading } = useSelector(folderState);
-  const [showModel, setShowModel] = useState(false);
+  const dispatch = useDispatch();
   const closeModel = () => {
-    setShowModel(false);
+    dispatch(hideModal());
   };
   const openModel = () => {
-    setShowModel(true);
+    dispatch(showModal({
+      title: 'New Folder',
+      size: 'modal-sm',
+      child: (
+        <NewFolderForm
+          closeModel={closeModel} />
+      )
+    }))
   };
 
   return (
@@ -92,17 +103,6 @@ function NewFolderButton() {
             New Folder
           </span>
         </button>
-        <div className="modal" style={{ display: showModel ? 'block' : 'none' }}>
-          <div className="modal-dialog modal-sm">
-            <div className="modal-content">
-              <div className="modal-body">
-                <h4 className="modal-title">New Folder</h4>
-                <br />
-                {isLoading === true ? <Spinner /> : <NewFolderForm closeModel={closeModel} />}
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </>
   )
