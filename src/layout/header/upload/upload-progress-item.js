@@ -25,7 +25,7 @@ function UploadProgressItem({ id, config }) {
               </div>
               <div className='col-xs-1'>
                 <small>
-                  {isProcessing === true ? 'Processing..' : `${progress}%`}
+                  {isUploading === true && progress === 100 ? 'Processing..' : `${progress}%`}
                 </small>
               </div>
             </div>

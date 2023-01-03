@@ -59,10 +59,16 @@ export const uploadFileToContainer = (id, config) => async (dispatch) => {
         dispatch(updateUploadingItem({
           ...config,
           progress,
-          isUploading: progress !== 100,
+          isUploading: true,
           id,
-        }))
+        }));
       });
+    dispatch(updateUploadingItem({
+      ...config,
+      progress: 100,
+      isUploading: false,
+      id,
+    }));
     dispatch(objectAppend({
       [response.code]: response,
     }));
