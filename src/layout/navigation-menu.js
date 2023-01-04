@@ -51,18 +51,13 @@ export default function NavigationMenu() {
               <i className="fa fa-server" /> <span>Storage</span>
             </a>
           </li>
-          <li >
-            <a href="#">
-              <i className="fa fa-clock-o" /> <span>Recent</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
+          <li className={checkIfActive(PATH_DASHBOARD.browse)}>
+            <a href="#" onClick={() => redirectOnClick(PATH_DASHBOARD.stared)}>
               <i className="fa fa-star" /> <span>Starred</span>
             </a>
           </li>
-          <li>
-            <a href="#">
+          <li className={checkIfActive(PATH_DASHBOARD.trashed)}>
+            <a href="#" onClick={() => redirectOnClick(PATH_DASHBOARD.trashed)}>
               <i className="fa fa-trash" /> <span>Trash</span>
             </a>
           </li>

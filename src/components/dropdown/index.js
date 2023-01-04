@@ -3,6 +3,7 @@ import DeleteItem from './delete'
 import DownloadItem from './download'
 import GetLink from './get-link'
 import RenameItem from './rename'
+import RestoreItem from './restore'
 import ShareItem from './share'
 import StarItem from './stared'
 import ViewDetails from './view-details'
@@ -14,13 +15,13 @@ function DropdownOptions({ config, context, setContext }) {
 
   if (context) {
     let pageY = context.pageY;
-    if (pageY > window.innerHeight / 2) {
+    if (pageY > window.innerHeight / 2 && !config.isTrash) {
       pageY -= 200;
     }
 
     xYPosistion = {
       x: context.pageX,
-      y: pageY - scrollPosition,
+      y: pageY -  scrollPosition,
     };
   }
 
@@ -55,25 +56,36 @@ function DropdownOptions({ config, context, setContext }) {
         }}
         className='rightClick'>
         <ul className="object-dropdown-menu">
-          <GetLink
-            closeMenu={closeMenu}
-            config={config} />
-          <StarItem
-            closeMenu={closeMenu}
-            config={config} />
-          <RenameItem
-            closeMenu={closeMenu}
-            config={config} />
-          <ShareItem
-            closeMenu={closeMenu}
-            config={config} />
-          <li className="divider" />
-          <ViewDetails
-            closeMenu={closeMenu}
-            config={config} />
-          <DownloadItem
-            closeMenu={closeMenu}
-            config={config} />
+          {
+            !config.isTrash ?
+              <>
+                <GetLink
+                  closeMenu={closeMenu}
+                  config={config} />
+                <StarItem
+                  closeMenu={closeMenu}
+                  config={config} />
+                <RenameItem
+                  closeMenu={closeMenu}
+                  config={config} />
+                <ShareItem
+                  closeMenu={closeMenu}
+                  config={config} />
+                <li className="divider" />
+                <ViewDetails
+                  closeMenu={closeMenu}
+                  config={config} />
+                <DownloadItem
+                  closeMenu={closeMenu}
+                  config={config} />
+              </>
+              : <>
+                <RestoreItem
+                  closeMenu={closeMenu}
+                  config={config} />
+              </>
+          }
+
           <li className="divider" />
           <DeleteItem
             closeMenu={closeMenu}

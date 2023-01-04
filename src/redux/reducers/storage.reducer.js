@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { BrowserService } from '../../services/browser.service'
-import { objectAppend } from './object.reducer';
-import { popFile, popFolder, pushFolder } from './browser.reducer';
+import { objectAppend, objectPop } from './object.reducer';
+import { popFile, popFolder, pushFile, pushFolder } from './browser.reducer';
 
 const initialState = {
   folder: {
@@ -68,16 +68,20 @@ export function createFolderApiCall(name, code) {
   }
 };
 
-export function updateFolderApiCall(code, props) {
+export function updateFolderApiCall(code, props, config) {
   return async (dispatch) => {
     try {
       dispatch(setFolderLoading(true));
       const res = await BrowserService.updateFolder(code, props);
       dispatch(setFolderLoading(false));
       const { result } = res;
-      if (props && props.isTrash === true) {
-        dispatch(popFolder(result.code));
-        result.isTrash = true;
+      if (props && config) {
+        if (config.isTrash === true && props.isTrash === false) {
+          dispatch(popFolder(result.code));
+        }
+        if (config.isTrash === false && props.isTrash === true) {
+          dispatch(popFolder(result.code));
+        }
       }
       dispatch(objectAppend({
         [result.code]: result
@@ -107,21 +111,53 @@ export function renameFolderApiCall(code, name) {
   }
 };
 
-export function updateFileApiCall(code, props) {
+export function updateFileApiCall(code, props, config) {
   return async (dispatch) => {
-
     try {
       dispatch(setFileLoading(true));
       const res = await BrowserService.updateFile(code, props);
       dispatch(setFileLoading(false));
       const { result } = res;
-      if (props && props.isTrash === true) {
-        dispatch(popFile(result.code));
-        result.isTrash = true;
+      if (props && config) {
+        if (config.isTrash === true && props.isTrash === false) {
+          dispatch(popFile(result.code));
+        }
+        if (config.isTrash === false && props.isTrash === true) {
+          dispatch(popFile(result.code));
+        }
+        if (config.isStared === true && props.isStared === false) {
+          dispatch(popFile(result.code));
+        }
       }
       dispatch(objectAppend({
         [result.code]: result
       }));
+    } catch (e) {
+      dispatch(setFileLoading(false));
+      throw e;
+    }
+  }
+};
+
+export function deleteFileApiCall(code) {
+  return async (dispatch) => {
+    try {
+      const res = await BrowserService.deleteFile(code);
+      dispatch(popFile(code));
+      dispatch(objectPop(code));
+    } catch (e) {
+      dispatch(setFileLoading(false));
+      throw e;
+    }
+  }
+};
+
+export function deleteFolderApiCall(code) {
+  return async (dispatch) => {
+    try {
+      const res = await BrowserService.deleteFolder(code);
+      dispatch(popFolder(code));
+      dispatch(objectPop(code));
     } catch (e) {
       dispatch(setFileLoading(false));
       throw e;

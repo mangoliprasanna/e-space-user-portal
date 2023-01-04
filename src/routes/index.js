@@ -39,6 +39,14 @@ function Router() {
           element: <Browse />,
         },
         {
+          path: PATH_DASHBOARD.stared,
+          element: <Browse key='stared' type='stared' />,
+        },
+        {
+          path: PATH_DASHBOARD.trashed,
+          element: <Browse key='trashed' type='trashed' />,
+        },
+        {
           path: PATH_DASHBOARD.browseFolder(),
           element: <Browse />,
         },

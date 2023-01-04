@@ -1,22 +1,41 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
-import { updateFileApiCall, updateFolderApiCall } from '../../redux/reducers/storage.reducer';
+import { deleteFileApiCall, deleteFolderApiCall, updateFileApiCall, updateFolderApiCall } from '../../redux/reducers/storage.reducer';
 import ToastHelper from '../../utils/toast.utils';
 
 function DeleteItem({ closeMenu, config }) {
   const dispatch = useDispatch();
-  const onClick = () => {
+  const error = `Unable to complete request!`;
+  const moveToTrash = () => {
     const msg = `Moved to trash!`;
-    const error = `Unable to complete request!`;
     if (config.type) {
       ToastHelper.promise(
-        dispatch(updateFileApiCall(config.code, { isTrash: true })),
+        dispatch(updateFileApiCall(config.code, { isTrash: true }, config)),
         msg,
         error
       );
     } else {
       ToastHelper.promise(
-        dispatch(updateFolderApiCall(config.code, { isTrash: true })),
+        dispatch(updateFolderApiCall(config.code, { isTrash: true }, config)),
+        msg,
+        error
+      );
+    }
+    closeMenu();
+  };
+
+  const deleteForever = () => {
+    const msg = `Item deleted!`;
+
+    if (config.type) {
+      ToastHelper.promise(
+        dispatch(deleteFileApiCall(config.code)),
+        msg,
+        error
+      );
+    } else {
+      ToastHelper.promise(
+        dispatch(deleteFolderApiCall(config.code)),
         msg,
         error
       );
@@ -28,14 +47,14 @@ function DeleteItem({ closeMenu, config }) {
       {
         config.isTrash ? (
           <li>
-            <div onClick={onClick}>
+            <div onClick={deleteForever}>
               <i className="fa fa-trash" />
               Delete Forever
             </div>
           </li>
         ) : (
           <li>
-            <div onClick={onClick}>
+            <div onClick={moveToTrash}>
               <i className="fa fa-trash" />
               Trash
             </div>
