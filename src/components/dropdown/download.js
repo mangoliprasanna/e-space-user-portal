@@ -1,7 +1,10 @@
 import React from 'react'
+import useAuth from '../../hooks/useAuth';
 
 function DownloadItem({ closeMenu, config }) {
+  const { user } = useAuth();
   const onClick = () => {
+    window.open(`/api/file/download/${config.code}?user=${user._id}`, "_blank");
     closeMenu();
   };
 
