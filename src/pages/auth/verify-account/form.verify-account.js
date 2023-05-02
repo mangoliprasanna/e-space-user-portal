@@ -12,11 +12,11 @@ function VerifyAccountForm() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
-  const { 
+  const {
     tempUser,
     verifyAccount,
     resendAccountVerificationOtp,
-   } = useAuth();
+  } = useAuth();
 
   const performVerifyAccount = async (form) => {
     try {
