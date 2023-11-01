@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { HOST_API } from '../config';
+import config from '../config';
 import ToastHelper from './toast.utils';
 
 const axiosInstance = axios.create({
-  baseURL: HOST_API,
+  baseURL: config.hostAPI,
 });
 
 axiosInstance.interceptors.response.use(
