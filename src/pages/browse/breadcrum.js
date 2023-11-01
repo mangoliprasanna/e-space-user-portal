@@ -32,8 +32,17 @@ const BreadCrumChild = ({ code, isLast }) => {
   )
 }
 
-function BrowserBreadcrum({ setGrid, isGrid }) {
+function BrowserBreadcrum({ setGrid, isGrid, type }) {
   const stack = useSelector(browserStack);
+  if (type) {
+    return (
+      <section className="content-header">
+        <h1>
+          {type[0].toUpperCase()}{type.slice(1)}
+        </h1>
+      </section>
+    )
+  }
   return (
     <>
       <ol className="breadcrumb">

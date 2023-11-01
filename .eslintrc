@@ -18,12 +18,17 @@
   ],
   "parser": "@babel/eslint-parser",
   "parserOptions": {
-    "ecmaVersion": 8,
     "requireConfigFile": false,
+    "plugins": ["jsx", "flow", "typescript"],
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
+    },
     "ecmaFeatures": {
       "experimentalObjectRestSpread": true,
-      "impliedStrict": true
-    }
+      "impliedStrict": true,
+      "jsx": true
+    },
+    "ecmaVersion": 12
   },
   "rules": {
     "no-shadow": 0,

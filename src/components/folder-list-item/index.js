@@ -36,7 +36,8 @@ const FolderListItem = ({ code }) => {
         className="col-lg-3 col-md-4 col-xs-6"
         onContextMenu={handleContextMenu}
         onDoubleClick={() => {
-          navigate(PATH_DASHBOARD.browseFolder(config.code));
+          if(!config.isTrash)
+            navigate(PATH_DASHBOARD.browseFolder(config.code));
         }}
         onClick={handleClick} >
         <div className={`object-list-item-box`}>

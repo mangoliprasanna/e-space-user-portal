@@ -28,7 +28,7 @@ export default function NavigationMenu() {
             <a href="#">{user.email}</a>
           </div>
         </div>
-        <form action="#" method="get" className="sidebar-form">
+        {/* <form action="#" method="get" className="sidebar-form">
           <div className="input-group">
             <input type="text" name="q" className="form-control" placeholder="Search anything.." />
             <span className="input-group-btn">
@@ -37,41 +37,36 @@ export default function NavigationMenu() {
               </button>
             </span>
           </div>
-        </form>
+        </form> */}
 
         <ul className="sidebar-menu" data-widget="tree">
           <li className="header">Navigation</li>
-          <li className={checkIfActive(PATH_DASHBOARD.dashboard)}>
+          {/* <li className={checkIfActive(PATH_DASHBOARD.dashboard)}>
             <a href="#" onClick={() => redirectOnClick(PATH_DASHBOARD.dashboard)}>
               <i className="fa fa-dashboard" /> <span>Dashboard</span>
             </a>
-          </li>
+          </li> */}
           <li className={checkIfActive(PATH_DASHBOARD.browse)}>
             <a href="#" onClick={() => redirectOnClick(PATH_DASHBOARD.browse)}>
               <i className="fa fa-server" /> <span>Storage</span>
             </a>
           </li>
-          <li >
-            <a href="#">
-              <i className="fa fa-clock-o" /> <span>Recent</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
+          <li className={checkIfActive(PATH_DASHBOARD.browse)}>
+            <a href="#" onClick={() => redirectOnClick(PATH_DASHBOARD.stared)}>
               <i className="fa fa-star" /> <span>Starred</span>
             </a>
           </li>
-          <li>
-            <a href="#">
+          <li className={checkIfActive(PATH_DASHBOARD.trashed)}>
+            <a href="#" onClick={() => redirectOnClick(PATH_DASHBOARD.trashed)}>
               <i className="fa fa-trash" /> <span>Trash</span>
             </a>
           </li>
-          <li className="header">Information</li>
+          {/* <li className="header">Information</li>
           <li>
             <a href="#">
               <i className="fa fa-info-circle" /> <span>Help</span>
             </a>
-          </li>
+          </li> */}
         </ul>
       </section>
 

@@ -14,6 +14,8 @@ function dashBoardPath(sublink) {
 export const PATH_DASHBOARD = {
   dashboard: dashBoardPath('/dashboard'),
   browse: dashBoardPath('/browse'),
+  stared: dashBoardPath('/browse/stared'),
+  trashed: dashBoardPath('/browse/trashed'),
   browseFolder: (key = ":key") => dashBoardPath(`/browse/folder/${key}`),
   profile: dashBoardPath('/profile'),
 

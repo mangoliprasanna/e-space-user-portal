@@ -1,5 +1,6 @@
 import { format } from 'date-fns';
 import { useSelector } from 'react-redux';
+import { formatBytes } from '../../utils/upload.utils';
 import { infoMenuItem } from '../../redux/reducers/browser.reducer';
 import getIconFromType, { getTypeFromMime } from '../../utils/typeToIcon.utils';
 import EmptyMenu from './empty.info-menu';
@@ -20,7 +21,7 @@ const formatDate = (date) => format(new Date(date), 'MMM dd, yyyy');
 
 const GeneralDetails = ({ config }) => {
   const isFile = config.type;
-  const Size = isFile ? <InfoChild display='Size' data='10 mb' /> : <></>;
+  const Size = isFile ? <InfoChild display='Size' data={formatBytes(config.size)} /> : <></>;
   const Type = isFile ? <InfoChild display='Type' data={getTypeFromMime(config?.type)} /> : <></>;
   const Created = <InfoChild display='Created' data={formatDate(config.createdAt)} />;
   const Modified = <InfoChild display='Modified' data={formatDate(config.updatedAt)} />;

@@ -3,25 +3,25 @@ import { useDispatch } from 'react-redux';
 import { updateFileApiCall, updateFolderApiCall } from '../../redux/reducers/storage.reducer';
 import ToastHelper from '../../utils/toast.utils';
 
-function StarItem({ closeMenu, config }) {
+function RestoreItem({ closeMenu, config }) {
   const dispatch = useDispatch();
   const onClick = () => {
-    const msg = `${config.isStared ? 'Removed from' : "Added to"} Starred`;
+    const msg = `Item restored!!`;
     const error = `Unable to complete request!`;
-    if (config.type) {
+    if(config.type) {
       ToastHelper.promise(
-        dispatch(updateFileApiCall(config.code, { isStared: !config.isStared }, config)),
+        dispatch(updateFileApiCall(config.code, { isTrash: false }, config)),
         msg,
         error
       );
     } else {
       ToastHelper.promise(
-        dispatch(updateFolderApiCall(config.code, { isStared: !config.isStared }, config)),
+        dispatch(updateFolderApiCall(config.code, { isTrash: false }, config)),
         msg,
         error
       );
-
     }
+    
     closeMenu();
   };
 
@@ -29,12 +29,12 @@ function StarItem({ closeMenu, config }) {
     <>
       <li>
         <div onClick={onClick} >
-          <i className={`fa ${config.isStared ? 'fa-star' : 'fa-star-o'}`} />
-          {config.isStared ? 'Remove Starred' : 'Add Starred'}
+          <i className={`fa fa-clock-o`} />
+          Restore
         </div>
       </li>
     </>
   )
 }
 
-export default StarItem
+export default RestoreItem

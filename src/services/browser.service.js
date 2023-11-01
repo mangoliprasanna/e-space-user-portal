@@ -20,6 +20,6 @@ export const BrowserService = {
   renameFolder: (code, name) => axios.post(_endpoints.renameFolder, { code, name }),
   updateFile: (code, props) => axios.patch(_endpoints.updateFile(code), { ...props }),
   renameFile: (code, name) => axios.post(_endpoints.renameFile, { code, name }),
-  deleteFolder: (code) => axios.patch(_endpoints.deleteFolder, { code }),
-  deleteFile: (code) => axios.patch(_endpoints.deleteFile, { code }),
+  deleteFolder: (code) => axios.delete(_endpoints.deleteFolder, { data: { code } }),
+  deleteFile: (code) => axios.delete(_endpoints.deleteFile, { data: { code } }),
 };

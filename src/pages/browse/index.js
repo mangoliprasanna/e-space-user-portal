@@ -11,10 +11,10 @@ import EmptyLayout from './empty.layout';
 import ErrorLayout from './error.layout';
 import BrowserBreadcrum from './breadcrum';
 
-export default function Browser() {
+export default function Browser(param) {
   document.title = `Browse - ESpace`;
   const [isGridView, setGridView] = useState(true);
-  const { key = 'root' } = useParams();
+  const { key = param.type || 'root' } = useParams();
   const dispatch = useDispatch();
   const { currentFolder, isLoading, isEmpty, hasError } = useSelector(currentFolderState);
 
@@ -34,7 +34,7 @@ export default function Browser() {
 
   return (
     <>
-      <BrowserBreadcrum setGrid={setGridView} isGrid={isGridView} />
+      <BrowserBreadcrum setGrid={setGridView} type={param.type} isGrid={isGridView} />
       <section className="content">
         {hasError === true ? <ErrorLayout /> : <></>}
         {isLoading === true ? <SpinnerLoader /> : <></>}

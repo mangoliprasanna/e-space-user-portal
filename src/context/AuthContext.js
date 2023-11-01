@@ -58,8 +58,10 @@ const handlers = {
     };
   },
   RESET: (state, action) => {
+    const { payload  } = action;
     return {
       ...initialState,
+      ...payload,
     };
   },
   UPDATE: (state, action) => {
@@ -78,6 +80,7 @@ const AuthContext = createContext({
   ...initialState,
   method: 'jwt',
   login: () => Promise.resolve(),
+  logout: () => Promise.resolve(),
   register: () => Promise.resolve(),
   verifyAccount: () => Promise.resolve(),
   resetPassword: () => Promise.resolve(),
@@ -157,6 +160,7 @@ function AuthProvider({ children }) {
 
   const logout = async () => {
     setSession({});
+    localStorage.clear();
     dispatch({ type: 'LOGOUT' });
   };
 
@@ -168,7 +172,9 @@ function AuthProvider({ children }) {
         isAuthenticated: false,
         isInitialized: false,
         user: null,
-        tempUser: null,
+        tempUser: {
+          verified: true,
+        },
       },
     });
   };
@@ -206,6 +212,9 @@ function AuthProvider({ children }) {
         isAuthenticated: false,
         isInitialized: false,
         user: null,
+        tempUser: {
+          verified: true,
+        }
       },
     });
   };

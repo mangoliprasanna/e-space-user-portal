@@ -2,6 +2,10 @@ html {
     background-color: #ecf0f5;
 }
 
+.content-wrapper {
+    height: 100vh;
+}
+
 .control-sidebar {
     width: 250px;
     right: -250px;
@@ -19,6 +23,16 @@ html {
 .buttonTxt {
     font-size: 15px;
     font-weight: bold;
+}
+
+.upload-item {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.buttonTxt input {
+    display: none;
 }
 
 .modal-content {
