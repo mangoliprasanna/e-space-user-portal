@@ -4,6 +4,7 @@ import objectReducer from './object.reducer';
 import storageReducer from './storage.reducer';
 import modalReducer from './modal.reducer';
 import uploadReducer from './uploader.reducer';
+import customizationReducer from './customization.reducer';
 
 export default combineReducers({
   browser: browserReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
   storage: storageReducer,
   modal: modalReducer,
   uploader: uploadReducer,
+  customization: customizationReducer
 });

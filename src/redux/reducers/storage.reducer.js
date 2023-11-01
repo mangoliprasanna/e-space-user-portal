@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { BrowserService } from '../../services/browser.service'
 import { objectAppend, objectPop } from './object.reducer';
-import { popFile, popFolder, pushFile, pushFolder } from './browser.reducer';
+import { popFile, popFolder, pushFolder } from './browser.reducer';
 
 const initialState = {
   folder: {
@@ -66,7 +66,7 @@ export function createFolderApiCall(name, code) {
       throw e;
     }
   }
-};
+}
 
 export function updateFolderApiCall(code, props, config) {
   return async (dispatch) => {
@@ -92,7 +92,7 @@ export function updateFolderApiCall(code, props, config) {
     }
 
   }
-};
+}
 
 export function renameFolderApiCall(code, name) {
   return async (dispatch) => {
@@ -109,7 +109,7 @@ export function renameFolderApiCall(code, name) {
       throw e;
     }
   }
-};
+}
 
 export function updateFileApiCall(code, props, config) {
   return async (dispatch) => {
@@ -137,7 +137,7 @@ export function updateFileApiCall(code, props, config) {
       throw e;
     }
   }
-};
+}
 
 export function deleteFileApiCall(code) {
   return async (dispatch) => {
@@ -150,7 +150,7 @@ export function deleteFileApiCall(code) {
       throw e;
     }
   }
-};
+}
 
 export function deleteFolderApiCall(code) {
   return async (dispatch) => {
@@ -163,7 +163,7 @@ export function deleteFolderApiCall(code) {
       throw e;
     }
   }
-};
+}
 
 export function renameFileApiCall(code, name) {
   return async (dispatch) => {
@@ -180,7 +180,7 @@ export function renameFileApiCall(code, name) {
       throw e;
     }
   }
-};
+}
 
 export const folderState = (state) => state.storage.folder;
 

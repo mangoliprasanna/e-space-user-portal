@@ -1,6 +1,6 @@
 import './style.css';
 
-export default () => {
+export default function Spinner() {
   return (
     <center>
       <div className='spinner-wrapper'>
@@ -8,4 +8,4 @@ export default () => {
       </div>
     </center>
   )
-};
+}
