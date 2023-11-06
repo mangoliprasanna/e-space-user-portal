@@ -1,36 +1,67 @@
-import { useNavigate } from 'react-router';
-import useAuth from '../../../hooks/useAuth';
-import ToastHelper from '../../../utils/toast.utils';
+import { Link } from 'react-router-dom';
+
+import { useTheme } from '@mui/material/styles';
+import { Divider, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
+
+// import Logo from 'ui-component/Logo';
+// import AuthFooter from 'ui-component/cards/AuthFooter';
 import LoginForm from './form.login';
-import { PATH_AUTH, PATH_DASHBOARD } from '../../../routes/paths';
+import AuthWrapper from '../auth.wrapper';
+import AuthCardWrapper from '../card.wrapper';
 import { AuthFooter, AuthHeader } from '../common';
 
+const Login = () => {
+  const theme = useTheme();
+  const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
 
-export default function Login() {
-  document.body.className = 'hold-transition login-page';
-  document.title = 'Login - ESpace';
-  const { isAuthenticated } = useAuth();
-  const navigate = useNavigate();
-  if(isAuthenticated) navigate(PATH_DASHBOARD.dashboard);
   return (
-    <>
-      <div className="login-box">
-        <AuthHeader />
-        <div className="box login-box-body">
-          <div className="box-header">
-            <h3 className="box-title">Let's Get Started</h3>
-          </div>
-          <div className='box-body'>
-            <LoginForm />
-            <br />
-            <div className='pull-left'>
-              <a href='#' onClick={() => navigate(PATH_AUTH.forgotPassword)}>Forgot Password ?</a> <br />
-              <a href='#' onClick={() => navigate(PATH_AUTH.register)}>Create new account</a>
-            </div>
-          </div>
-        </div>
-        <AuthFooter />
-      </div>
-    </>
+    <AuthWrapper>
+      <Grid container direction="column" justifyContent="flex-end" sx={{ minHeight: '100vh' }}>
+        <Grid item xs={12}>
+          <Grid container justifyContent="center" alignItems="center" sx={{ minHeight: 'calc(100vh - 68px)' }}>
+            <Grid item sx={{ m: { xs: 1, sm: 3 }, mb: 0 }}>
+              <AuthCardWrapper>
+                <Grid container spacing={2} alignItems="center" justifyContent="center">
+                  <Grid item sx={{ mb: 3 }}>
+                    <Link to="#">
+                      <AuthHeader />
+                    </Link>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Grid container direction={matchDownSM ? 'column-reverse' : 'row'} alignItems="center" justifyContent="center">
+                      <Grid item>
+                        <Stack alignItems="center" justifyContent="center" spacing={1}>
+                          <Typography variant="caption" fontSize="16px" textAlign={matchDownSM ? 'center' : 'inherit'}>
+                            Enter your credentials to continue
+                          </Typography>
+                        </Stack>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <LoginForm />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Divider />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Grid item container direction="column" alignItems="center" xs={12}>
+                      <Typography component={Link} to="/auth/register" variant="subtitle1" sx={{ textDecoration: 'none' }}>
+                        Don&apos;t have an account?
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </AuthCardWrapper>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs={12} sx={{ m: 3, mt: 1 }}>
+          <AuthFooter />
+        </Grid>
+      </Grid>
+    </AuthWrapper>
   );
-}
+};
+
+export default Login;

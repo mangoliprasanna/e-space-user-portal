@@ -1,20 +1,40 @@
-
 import * as Yup from 'yup';
+import {
+  Box,
+  Button,
+  Checkbox,
+  Divider,
+  FormControl,
+  FormControlLabel,
+  FormHelperText,
+  Grid,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+  Stack,
+  Typography,
+  useMediaQuery
+} from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import { useState } from 'react';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router';
 
+import AnimateButton from '../../../components/button.animation';
 import { authFormElements } from '../../../utils/form.utils';
-import { PATH_AUTH, PATH_DASHBOARD } from '../../../routes/paths';
+import { PATH_DASHBOARD } from '../../../routes/paths';
 import useAuth from '../../../hooks/useAuth';
 
 function LoginForm() {
 
   const navigate = useNavigate();
+  const theme = useTheme();
 
   const { login } = useAuth();
 
   const [loading, setLoading] = useState(false);
+  const [checked, setChecked] = useState(true);
 
   const performLogin = async (form) => {
     try {
@@ -46,44 +66,67 @@ function LoginForm() {
   return (
     <div>
       <form onSubmit={formik.handleSubmit}>
-        <div className={`form-group has-feedback ${formik.errors.email ? 'has-error' : null}`}>
-          <input
+        <FormControl fullWidth error={Boolean(formik.touched.email && formik.errors.email)} sx={{ ...theme.typography.customInput }}>
+          <InputLabel htmlFor="auth-login-email">Email Address </InputLabel>
+          <OutlinedInput
+            id="auth-login-email"
             type="email"
-            className="form-control"
-            disabled={loading}
-            placeholder='Email Address'
+            value={formik.values.email}
+            name="email"
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+            label="Email Address"
             {...formik.getFieldProps('email')}
           />
-          <span className="glyphicon glyphicon-envelope form-control-feedback" />
-          {formik.errors.email ? <span className="help-block">{formik.errors.email}</span> : null}
-        </div>
-        <div className={`form-group has-feedback ${formik.errors.password ? 'has-error' : null}`}>
-          <input
+          {formik.touched.email && formik.errors.email && (
+            <FormHelperText error id="auth-login-error-email">
+              {formik.errors.email}
+            </FormHelperText>
+          )}
+        </FormControl>
+
+        <FormControl fullWidth error={Boolean(formik.touched.password && formik.errors.password)} sx={{ ...theme.typography.customInput }}>
+          <InputLabel htmlFor="auth-login-password">Password</InputLabel>
+          <OutlinedInput
+            id="auth-login-password"
             type="password"
-            placeholder='Password'
-            disabled={loading}
-            className="form-control"
+            value={formik.values.password}
+            name="password"
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+            label="Password"
             {...formik.getFieldProps('password')}
           />
-          <span className="glyphicon glyphicon-lock form-control-feedback" />
-          {formik.errors.password ? <span className="help-block">{formik.errors.password}</span> : null}
-        </div>
-        <div className="row">
-          <div className="col-xs-7">
-            <div className="checkbox">
-              <label>
-                <input
-                  type="checkbox"
-                /> Remember me
-              </label>
-            </div>
-          </div>
-          <div className="col-xs-5">
-            <button disabled={loading} type="submit" className="btn btn-primary btn-block">
-              {loading ? (<i className="fa fa-refresh fa-spin" />) : 'Sign In'}
-            </button>
-          </div>
-        </div>
+          {formik.touched.password && formik.errors.password && (
+            <FormHelperText error id="auth-login-error-password">
+              {formik.errors.password}
+            </FormHelperText>
+          )}
+        </FormControl>
+
+        <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={1}>
+          <FormControlLabel
+            control={
+              <Checkbox checked={checked} onChange={(event) => setChecked(event.target.checked)} name="checked" color="primary" />
+            }
+            label="Remember me"
+          />
+          <Typography variant="subtitle1" color="secondary" sx={{ textDecoration: 'none', cursor: 'pointer' }}>
+            Forgot Password?
+          </Typography>
+        </Stack>
+        {formik.errors.submit && (
+          <Box sx={{ mt: 3 }}>
+            <FormHelperText error>{formik.errors.submit}</FormHelperText>
+          </Box>
+        )}
+        <Box sx={{ mt: 2 }}>
+          <AnimateButton>
+            <Button disableElevation disabled={loading} fullWidth size="large" type="submit" variant="contained" color="secondary">
+              Sign in
+            </Button>
+          </AnimateButton>
+        </Box>
       </form>
     </div>
   );

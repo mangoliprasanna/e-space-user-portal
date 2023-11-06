@@ -6,7 +6,7 @@ const initialState = {
   defaultId: 'default',
   fontFamily: config.fontFamily,
   borderRadius: config.borderRadius,
-  opened: true
+  opened: true,
 };
 
 const customizationReducer = createSlice({
