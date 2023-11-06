@@ -16,9 +16,10 @@ import { useState } from 'react';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router';
 
+import { Link } from 'react-router-dom';
 import AnimateButton from '../../../components/button.animation';
 import { authFormElements } from '../../../utils/form.utils';
-import { PATH_DASHBOARD } from '../../../routes/paths';
+import { PATH_AUTH, PATH_DASHBOARD } from '../../../routes/paths';
 import useAuth from '../../../hooks/useAuth';
 
 function LoginForm() {
@@ -106,7 +107,7 @@ function LoginForm() {
             }
             label="Remember me"
           />
-          <Typography variant="subtitle1" color="secondary" sx={{ textDecoration: 'none', cursor: 'pointer' }}>
+          <Typography component={Link} to={PATH_AUTH.forgotPassword} variant="subtitle1" color="secondary" sx={{ textDecoration: 'none', cursor: 'pointer' }}>
             Forgot Password?
           </Typography>
         </Stack>

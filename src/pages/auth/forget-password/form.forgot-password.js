@@ -1,16 +1,31 @@
 import * as Yup from 'yup';
+import {
+  Box,
+  Button,
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  FormHelperText,
+  InputLabel,
+  OutlinedInput,
+  Stack,
+  Typography,
+} from '@mui/material';
 import { useState } from 'react';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router';
 
+import { useTheme } from '@emotion/react';
 import { authFormElements } from '../../../utils/form.utils';
 import { PATH_AUTH } from '../../../routes/paths';
 import useAuth from '../../../hooks/useAuth';
+import AnimateButton from '../../../components/button.animation';
 
 function ForgetPasswordForm() {
   const navigate = useNavigate();
+  const theme = useTheme();
 
-  const { requestResetPassword, clearTempUser } = useAuth();
+  const { requestResetPassword } = useAuth();
 
   const [loading, setLoading] = useState(false);
 
@@ -39,22 +54,31 @@ function ForgetPasswordForm() {
   return (
     <div>
       <form onSubmit={formik.handleSubmit}>
-        <div className={`form-group has-feedback ${formik.errors.email ? 'has-error' : null}`}>
-          <label>Email Address</label>
-          <input
+        <FormControl fullWidth error={Boolean(formik.touched.email && formik.errors.email)} sx={{ ...theme.typography.customInput }}>
+          <InputLabel htmlFor="auth-login-email">Email Address </InputLabel>
+          <OutlinedInput
+            id="auth-login-email"
             type="email"
-            disabled={loading}
-            className="form-control"
+            value={formik.values.email}
+            name="email"
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+            label="Email Address"
             {...formik.getFieldProps('email')}
           />
-          <span className="glyphicon glyphicon-envelope form-control-feedback" />
-          {formik.errors.email ? <span className="help-block">{formik.errors.email}</span> : null}
-        </div>
-        <div className="pull-right">
-          <button disabled={loading} type="submit" className="btn btn-primary">
-            {loading ? (<i className="fa fa-refresh fa-spin" />) : 'Send Email'}
-          </button>
-        </div>
+          {formik.touched.email && formik.errors.email && (
+            <FormHelperText error id="auth-login-error-email">
+              {formik.errors.email}
+            </FormHelperText>
+          )}
+        </FormControl>
+        <Box sx={{ mt: 2 }}>
+          <AnimateButton>
+            <Button disableElevation disabled={loading} fullWidth size="large" type="submit" variant="contained" color="secondary">
+              Send Email
+            </Button>
+          </AnimateButton>
+        </Box>
       </form>
     </div>
   );
