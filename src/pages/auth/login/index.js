@@ -3,12 +3,11 @@ import { Link } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import { Divider, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
 
-// import Logo from 'ui-component/Logo';
-// import AuthFooter from 'ui-component/cards/AuthFooter';
 import LoginForm from './form.login';
 import AuthWrapper from '../auth.wrapper';
 import AuthCardWrapper from '../card.wrapper';
 import { AuthFooter, AuthHeader } from '../common';
+import { PATH_AUTH } from '../../../routes/paths';
 
 const Login = () => {
   const theme = useTheme();
@@ -46,7 +45,7 @@ const Login = () => {
                   </Grid>
                   <Grid item xs={12}>
                     <Grid item container direction="column" alignItems="center" xs={12}>
-                      <Typography component={Link} to="/auth/register" variant="subtitle1" sx={{ textDecoration: 'none' }}>
+                      <Typography component={Link} to={PATH_AUTH.register} variant="subtitle1" sx={{ textDecoration: 'none' }}>
                         Don&apos;t have an account?
                       </Typography>
                     </Grid>
