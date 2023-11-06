@@ -1,7 +1,21 @@
 import * as Yup from 'yup';
+import {
+  Box,
+  Button,
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  FormHelperText,
+  InputLabel,
+  OutlinedInput,
+  Stack,
+  Typography,
+} from '@mui/material';
 import { useState } from 'react';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router';
+import { useTheme } from '@emotion/react';
+import AnimateButton from '../../../components/button.animation';
 import { authFormElements } from '../../../utils/form.utils';
 import { PATH_AUTH } from '../../../routes/paths';
 
@@ -9,6 +23,8 @@ import useAuth from '../../../hooks/useAuth';
 import ToastHelper from '../../../utils/toast.utils';
 
 function ResetPasswordForm() {
+
+  const theme = useTheme();
 
   const navigate = useNavigate();
 
@@ -49,36 +65,51 @@ function ResetPasswordForm() {
   return (
     <div>
       <form onSubmit={formik.handleSubmit}>
-        <div className={`form-group has-feedback ${formik.errors.newPassword ? 'has-error' : null}`}>
-          <input
+        <FormControl fullWidth error={Boolean(formik.touched.newPassword && formik.errors.newPassword)} sx={{ ...theme.typography.customInput }}>
+          <InputLabel htmlFor="auth-reset-password-new-password">Password</InputLabel>
+          <OutlinedInput
+            id="auth-reset-password-new-password"
             type="password"
-            placeholder='New Password'
-            disabled={loading}
-            className="form-control"
+            value={formik.values.newPassword}
+            name="newPassword"
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+            label="New Password"
             {...formik.getFieldProps('newPassword')}
           />
-          <span className="glyphicon glyphicon-lock form-control-feedback" />
-          {formik.errors.newPassword ? <span className="help-block">{formik.errors.newPassword}</span> : null}
-        </div>
-        <div className={`form-group has-feedback ${formik.errors.confirmPassword ? 'has-error' : null}`}>
-          <input
+          {formik.touched.newPassword && formik.errors.newPassword && (
+            <FormHelperText error id="auth-reset-password-error-new-password">
+              {formik.errors.newPassword}
+            </FormHelperText>
+          )}
+        </FormControl>
+        <br />
+        <FormControl fullWidth error={Boolean(formik.touched.confirmPassword && formik.errors.confirmPassword)} sx={{ ...theme.typography.customInput }}>
+          <InputLabel htmlFor="auth-reset-password-confirm-password">Password</InputLabel>
+          <OutlinedInput
+            id="auth-reset-password-confirm-password"
             type="password"
-            placeholder='Confirm Password'
-            disabled={loading}
-            className="form-control"
+            value={formik.values.confirmPassword}
+            name="confirmPassword"
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+            label="Confirm Password"
             {...formik.getFieldProps('confirmPassword')}
           />
-          <span className="glyphicon glyphicon-lock form-control-feedback" />
-          {formik.errors.confirmPassword ? <span className="help-block">{formik.errors.confirmPassword}</span> : null}
-        </div>
-        <div className="row">
-          <div className="col-xs-7" />
-          <div className="col-xs-5">
-            <button disabled={loading} type="submit" className="btn btn-primary btn-block">
-              {loading ? (<i className="fa fa-refresh fa-spin" />) : 'Reset'}
-            </button>
-          </div>
-        </div>
+          {formik.touched.confirmPassword && formik.errors.confirmPassword && (
+            <FormHelperText error id="auth-reset-password-error-confirm-password">
+              {formik.errors.confirmPassword}
+            </FormHelperText>
+          )}
+        </FormControl>
+
+        <Box sx={{ mt: 2 }}>
+          <AnimateButton>
+            <Button disableElevation disabled={loading} fullWidth size="large" type="submit" variant="contained" color="secondary">
+              Reset Password
+            </Button>
+          </AnimateButton>
+        </Box>
       </form>
     </div>
   );
