@@ -1,18 +1,19 @@
-import { useRoutes } from 'react-router-dom';
 import { lazy } from 'react';
 import Loadable from '../components/loadable';
-import DashboardLayout from '../layout';
-import Dashboard from '../pages/dashboard';
+
 import AuthGuard from './auth.guard';
 import { PATH_DASHBOARD } from './paths';
-import UserProfile from '../pages/profile';
-import Browse from '../pages/browse';
+import MainLayout from '../layout/main-layout';
+
+const Dashboard = Loadable(lazy(() => import('../pages/dashboard')));
+const UserProfile = Loadable(lazy(() => import('../pages/profile')));
+const Browse = Loadable(lazy(() => import('../pages/browse')));
 
 const AppRoutes = {
   path: '/',
   element: (
     <AuthGuard>
-      <DashboardLayout />
+      <MainLayout />
     </AuthGuard>
   ),
   children: [

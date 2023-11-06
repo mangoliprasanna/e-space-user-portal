@@ -34,7 +34,7 @@ export default function Browser(param) {
 
   return (
     <>
-      <BrowserBreadcrum setGrid={setGridView} type={param.type} isGrid={isGridView} />
+      {/* <BrowserBreadcrum setGrid={setGridView} type={param.type} isGrid={isGridView} /> */}
       <section className="content">
         {hasError === true ? <ErrorLayout /> : <></>}
         {isLoading === true ? <SpinnerLoader /> : <></>}

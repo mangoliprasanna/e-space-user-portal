@@ -1,17 +1,19 @@
-import { Outlet } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+import { Outlet } from 'react-router-dom';
+
+// material-ui
 import { styled, useTheme } from '@mui/material/styles';
 import { AppBar, Box, CssBaseline, Toolbar, useMediaQuery } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
-import { setMenu } from '../redux/reducers/customization.reducer';
+
+// project imports
+import { setMenu } from '../../redux/reducers/customization.reducer';
 import Header from './header';
-
-import NavigationMenu from './navigation-menu';
-
-import InfoMenu from './info-menu';
-import GlobalModal from './modal';
-import config from '../config';
+import Sidebar from './sidebar';
 
 
+import config from '../../config';
+
+// styles
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, open }) => ({
   ...theme.typography.mainContent,
   borderBottomLeftRadius: 0,
@@ -45,7 +47,9 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({
   }
 }));
 
-export default function DashboardLayout() {
+// ==============================|| MAIN LAYOUT ||============================== //
+
+const MainLayout = () => {
   const theme = useTheme();
   const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
   // Handle left drawer
@@ -53,23 +57,38 @@ export default function DashboardLayout() {
   const dispatch = useDispatch();
   const handleLeftDrawerToggle = () => {
     dispatch(setMenu({ opened: !leftDrawerOpened }));
-
+    // dispatch({ type: SET_MENU, opened: !leftDrawerOpened });
   };
-  return (
-    <div>
-      <div className="wrapper">
-        {/* top fixed header */}
-        <Header />
-        {/* Left side column. contains the sidebar */}
-        <NavigationMenu />
 
-        <GlobalModal />
-        {/* Content Wrapper. Contains page content */}
-        <div className="content-wrapper">
-          <Outlet />
-          <InfoMenu />
-        </div>
-      </div>
-    </div>
+  return (
+    <Box sx={{ display: 'flex' }}>
+      <CssBaseline />
+      {/* header */}
+      <AppBar
+        enableColorOnDark
+        position="fixed"
+        color="inherit"
+        elevation={0}
+        sx={{
+          bgcolor: theme.palette.background.default,
+          transition: leftDrawerOpened ? theme.transitions.create('width') : 'none'
+        }}
+      >
+        <Toolbar>
+          <Header handleLeftDrawerToggle={handleLeftDrawerToggle} />
+        </Toolbar>
+      </AppBar>
+
+      {/* drawer */}
+      <Sidebar drawerOpen={!matchDownMd ? leftDrawerOpened : !leftDrawerOpened} drawerToggle={handleLeftDrawerToggle} />
+
+      {/* main content */}
+      <Main theme={theme} open={leftDrawerOpened}>
+        <Outlet />
+      </Main>
+      {/* <Customization /> */}
+    </Box>
   );
-}
+};
+
+export default MainLayout;

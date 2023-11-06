@@ -1,60 +1,15 @@
-export default function Dashboard() {
-  document.title = 'Dashboard - ESpace';
-  return (
-    <>
-      {/* Content Header (Page header) */}
-      <section className="content-header">
-        <h1>
-          Blank page
-          <small>it all starts here</small>
-        </h1>
-        <ol className="breadcrumb">
-          <li>
-            <a href="#">
-              <i className="fa fa-dashboard" /> Home
-            </a>
-          </li>
-          <li>
-            <a href="#">Examples</a>
-          </li>
-          <li className="active">Blank page</li>
-        </ol>
-      </section>
-      {/* Main content */}
-      <section className="content">
-        {/* Default box */}
-        <div className="box">
-          <div className="box-header with-border">
-            <h3 className="box-title">Dashboard from component</h3>
-            <div className="box-tools pull-right">
-              <button
-                type="button"
-                className="btn btn-box-tool"
-                data-widget="collapse"
-                data-toggle="tooltip"
-                title="Collapse"
-              >
-                <i className="fa fa-minus" />
-              </button>
-              <button
-                type="button"
-                className="btn btn-box-tool"
-                data-widget="remove"
-                data-toggle="tooltip"
-                title="Remove"
-              >
-                <i className="fa fa-times" />
-              </button>
-            </div>
-          </div>
-          <div className="box-body">Start creating your amazing application!</div>
-          {/* /.box-body */}
-          <div className="box-footer">Footer</div>
-          {/* /.box-footer */}
-        </div>
-        {/* /.box */}
-      </section>
-      {/* /.content */}
-    </>
-  );
-}
+import { Typography } from '@mui/material';
+import MainCard from '../../components/cards/main.card';
+
+const DashboardPage = () => (
+  <MainCard title="Sample Card">
+    <Typography variant="body2">
+      Lorem ipsum dolor sit amen, consenter nipissing eli, sed do elusion tempos incident ut laborers et doolie magna alissa. Ut enif ad
+      minim venice, quin nostrum exercitation illampu laborings nisi ut liquid ex ea commons construal. Duos aube grue dolor in reprehended
+      in voltage veil esse colum doolie eu fujian bulla parian. Exceptive sin ocean cuspidate non president, sunk in culpa qui officiate
+      descent molls anim id est labours.
+    </Typography>
+  </MainCard>
+);
+
+export default DashboardPage;
