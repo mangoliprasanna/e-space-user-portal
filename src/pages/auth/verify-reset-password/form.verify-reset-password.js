@@ -3,6 +3,10 @@ import { useFormik } from 'formik';
 import { useState } from 'react';
 
 import { useNavigate } from 'react-router';
+import { MuiOtpInput } from 'mui-one-time-password-input';
+import { Stack } from '@mui/system';
+import { CircularProgress, Typography } from '@mui/material';
+import config from '../../../config';
 import { PATH_AUTH } from '../../../routes/paths';
 import { authFormElements } from '../../../utils/form.utils';
 import useAuth from '../../../hooks/useAuth';
@@ -12,16 +16,19 @@ import ToastHelper from '../../../utils/toast.utils';
 
 function VerifyResetPasswordForm() {
   const navigate = useNavigate();
+  const [otp, setOtp] = useState();
   const [loading, setLoading] = useState();
   const { verifyResetPassword, requestResetPassword, tempUser } = useAuth();
 
-  const verifyOtp = async (form) => {
+  const verifyOtp = async (otp) => {
     try {
       setLoading(true);
-      await verifyResetPassword(tempUser.email, form.otp);
+      await verifyResetPassword(tempUser.email, otp);
+      setOtp();
       navigate(PATH_AUTH.resetPassword);
     } catch (e) {
       console.log(e);
+      setOtp();
     } finally {
       setLoading(false);
     }
@@ -49,7 +56,6 @@ function VerifyResetPasswordForm() {
     onSubmit: verifyOtp,
   });
 
-
   if (!tempUser) {
     ToastHelper.error('Invalid User!!');
     return navigate(PATH_AUTH.login);
@@ -58,33 +64,35 @@ function VerifyResetPasswordForm() {
   return (
     <div>
       <form onSubmit={formik.handleSubmit}>
-        <div className={`form-group has-feedback ${formik.errors.otp ? 'has-error' : null}`}>
-          <input
-            type="text"
-            className="form-control"
+        {loading ? (
+
+          <center>
+            <CircularProgress />
+          </center>
+        ) : (
+          <MuiOtpInput
             disabled={loading}
-            placeholder='OTP'
-            {...formik.getFieldProps('otp')}
+            length={config.otpLength}
+            autoFocus
+            value={otp}
+            onChange={setOtp}
+            onComplete={verifyOtp}
           />
-          <span className="glyphicon glyphicon-lock form-control-feedback" />
-          {formik.errors.otp ? <span className="help-block">{formik.errors.otp}</span> : null}
-        </div>
-        <div className='row'>
-          <div className='col-lg-6'>
-            <button type="submit" className="btn btn-primary">
-              {loading ? (<i className="fa fa-refresh fa-spin" />) : 'Verify'}
-            </button>
-          </div>
-          <div className='col-lg-6'>
-            <button onClick={resendOtp} type="button" className="btn btn-default pull-right">
-              {loading ? (<i className="fa fa-refresh fa-spin" />) : 'Resend'}
-            </button>
-          </div>
-        </div>
+        )}
+
         <br />
+
+        <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={1}>
+
+          {/* "Resend OTP" link */}
+          <Typography onClick={resendOtp} variant="subtitle1" color="secondary" sx={{ textDecoration: 'none', cursor: 'pointer' }}>
+            Resend OTP
+          </Typography>
+        </Stack>
       </form>
     </div>
   );
 }
 
 export default VerifyResetPasswordForm;
+

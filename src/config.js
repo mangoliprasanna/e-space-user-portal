@@ -3,7 +3,8 @@ const config = {
   hostAPI: 'http://localhost:5100/',
   defaultPath: '/dashboard/default',
   fontFamily: `'Roboto', sans-serif`,
-  borderRadius: 12
+  borderRadius: 12,
+  otpLength: 4,
 };
 
 export default config;
