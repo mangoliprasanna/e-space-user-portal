@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Card, List } from '@mui/material'
 import DeleteItem from './delete'
 import DownloadItem from './download'
 import GetLink from './get-link'
@@ -14,14 +15,14 @@ function DropdownOptions({ config, context, setContext }) {
   let xYPosistion = { x: 0, y: 0 };
 
   if (context) {
-    let pageY = context.pageY;
+    let { pageY } = context;
     if (pageY > window.innerHeight / 2 && !config.isTrash) {
       pageY -= 200;
     }
 
     xYPosistion = {
       x: context.pageX,
-      y: pageY -  scrollPosition,
+      y: pageY - scrollPosition,
     };
   }
 
@@ -49,49 +50,46 @@ function DropdownOptions({ config, context, setContext }) {
 
   return (
     <>
-      {context ? <div
-        style={{
+      {context ?
+        <Card sx={{ minWidth: 275 }} elevation={2} style={{
           left: xYPosistion.x,
           top: xYPosistion.y,
-        }}
-        className='rightClick'>
-        <ul className="object-dropdown-menu">
-          {
-            !config.isTrash ?
-              <>
-                <GetLink
-                  closeMenu={closeMenu}
-                  config={config} />
-                <StarItem
-                  closeMenu={closeMenu}
-                  config={config} />
-                <RenameItem
-                  closeMenu={closeMenu}
-                  config={config} />
-                <ShareItem
-                  closeMenu={closeMenu}
-                  config={config} />
-                <li className="divider" />
-                <ViewDetails
-                  closeMenu={closeMenu}
-                  config={config} />
-                <DownloadItem
-                  closeMenu={closeMenu}
-                  config={config} />
-              </>
-              : <>
-                <RestoreItem
-                  closeMenu={closeMenu}
-                  config={config} />
-              </>
-          }
-
-          <li className="divider" />
-          <DeleteItem
-            closeMenu={closeMenu}
-            config={config} />
-        </ul>
-      </div> : <></>}
+        }} className='rightClick'>
+          <List>
+            {
+              !config.isTrash ?
+                <>
+                  <GetLink
+                    closeMenu={closeMenu}
+                    config={config} />
+                  <StarItem
+                    closeMenu={closeMenu}
+                    config={config} />
+                  <RenameItem
+                    closeMenu={closeMenu}
+                    config={config} />
+                  <ShareItem
+                    closeMenu={closeMenu}
+                    config={config} />
+                  <ViewDetails
+                    closeMenu={closeMenu}
+                    config={config} />
+                  <DownloadItem
+                    closeMenu={closeMenu}
+                    config={config} />
+                </>
+                : <>
+                  <RestoreItem
+                    closeMenu={closeMenu}
+                    config={config} />
+                </>
+            }
+            <DeleteItem
+              closeMenu={closeMenu}
+              config={config} />
+          </List>
+        </Card>
+        : <></>}
     </>
   )
 }

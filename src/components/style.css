@@ -1,107 +1,11 @@
-.object-list-item-box {
-    width: 100%;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    background: white;
-    padding: 12px;
-    cursor: default;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    align-items: center;
-    margin-bottom: 8px;
+.card-item {
+    padding: 15px;
 }
 
-.object-list-item-box.active {
-    background: #e7e6e6;
-}
-
-.object-list-item-box:hover {
-    background: #e7e6e6;
-}
-
-.object-list-item-box:focus {
-    background: #e7e6e6;
-}
-
-.objectIcon {
-    font-size: 25px;
-}
-
-.objectTitle {
+.card-title {
     white-space: nowrap;
     font-size: 15px;
     font-weight: bold;
     overflow: hidden;
     text-overflow: ellipsis
-}
-
-.object-dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 1000;
-    float: left;
-    min-width: 160px;
-    padding: 5px 0;
-    margin: 2px 0 0;
-    font-size: 14px;
-    text-align: left;
-    list-style: none;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ccc;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    border-radius: 4px;
-    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-}
-
-.object-dropdown-menu>li>div {
-    display: block;
-    cursor: default;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    padding: 4px 16px;
-    clear: both;
-    font-weight: 400;
-    line-height: 1.42857143;
-    color: #333333;
-    white-space: nowrap;
-}
-
-.object-dropdown-menu>li>div>i {
-    padding-right: 8px;
-}
-
-.object-dropdown-menu>li>div:hover,
-.object-dropdown-menu>li>div:focus {
-    color: #262626;
-    text-decoration: none;
-    background-color: #f5f5f5;
-}
-
-.object-dropdown-menu>.active>div,
-.object-dropdown-menu>.active>div:hover,
-.object-dropdown-menu>.active>div:focus {
-    color: #fff;
-    text-decoration: none;
-    background-color: #337ab7;
-    outline: 0;
-}
-
-
-.object-dropdown-menu .divider {
-    height: 1px;
-    margin: 9px 0;
-    overflow: hidden;
-    background-color: #e5e5e5;
-}
-
-.rightClick {
-    z-index: 12;
-    position: fixed;
-    background: rgb(240, 200, 1);
 }

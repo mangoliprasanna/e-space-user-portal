@@ -1,47 +1,76 @@
-import React, {  useState } from 'react';
+import React from 'react';
+import { Stack } from '@mui/system';
+import { Avatar, AvatarGroup, Card, Grid, IconButton, Menu, MenuItem, SvgIcon } from '@mui/material';
+import MuiTypography from '@mui/material/Typography';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSelectedItem } from '../../redux/reducers/browser.reducer';
 import { objectByCode } from '../../redux/reducers/object.reducer';
 import getIconFromType from '../../utils/typeToIcon.utils';
-import DropdownOptions from '../dropdown';
-import '../style.css'
+
+import '../style.css';
+import { formatBytes, formatDate } from '../../utils/upload.utils';
+import DropdownOptions from "../drop-down-options/index";
 
 const FileListItem = ({ code }) => {
   const dispatch = useDispatch();
   const config = useSelector(state => objectByCode(code, state));
-  const [context, setContext] = useState();
 
-  const handleContextMenu = (e) => {
-    e.preventDefault();
-    setContext(e);
-  }
+  const [contextMenu, setContextMenu] = React.useState(null);
 
-  const handleClick = (event) => {
-    setContext();
-    dispatch(setSelectedItem(code));
+  const handleContextMenu = (event) => {
+    event.preventDefault();
+    setContextMenu(
+      contextMenu === null
+        ? {
+          mouseX: event.clientX + 2,
+          mouseY: event.clientY - 6,
+        }
+        : null,
+    );
+  };
+
+  const handleClose = () => {
+    setContextMenu(null);
   };
 
   return (
     <>
-      <DropdownOptions
-        context={context}
-        setContext={setContext}
-        config={config}
-      />
-      <div
-        className="col-lg-3 col-md-4 col-xs-6"
-        onContextMenu={handleContextMenu}
-        onClick={handleClick} >
-        <div className={`object-list-item-box`}>
-          <div className="row">
-            <div className="col-xs-2">
-              <i className={`${getIconFromType(config.type)} objectIcon`} aria-hidden="true" />
-            </div>
-            <div className="col-xs-9 objectTitle">
-              {config.name}
-            </div>
+      <div onContextMenu={handleContextMenu}>
+        <Card className='card-item'>
+
+          <Grid
+            container
+            direction="row"
+            justifyContent="space-between"
+            alignItems="flex-start"
+          >
+            <Grid item>
+              <SvgIcon component={getIconFromType(config.type)} style={{ fontSize: 50 }} />
+            </Grid>
+            <Grid item>
+              <Stack direction="row" spacing={1}>
+                {/* <IconButton>
+                  <StarBorderIcon fontSize='small' />
+                </IconButton> */}
+                <IconButton onClick={handleContextMenu}>
+                  <MoreVertIcon fontSize='small' />
+                </IconButton>
+              </Stack>
+            </Grid>
+          </Grid>
+
+          <div className="card-title">
+            {config.name}
           </div>
-        </div>
+
+          <MuiTypography variant="subtitle2" gutterBottom>
+            {formatBytes(config.size || 0)} - {formatDate(config.createdAt)}
+          </MuiTypography>
+
+        </Card>
+
+        <DropdownOptions handleClose={handleClose} contextMenu={contextMenu} config={config} />
       </div>
     </>
   );

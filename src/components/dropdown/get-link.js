@@ -1,5 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
+import InsertLinkIcon from '@mui/icons-material/InsertLink';
+import { ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import ToastHelper from '../../utils/toast.utils';
 import { hideModal, showModal } from '../../redux/reducers/modal.reducer';
 
@@ -68,12 +70,14 @@ function GetLink({ closeMenu, config }) {
 
   return (
     <>
-      <li>
-        <div onClick={onClick}>
-          <i className="fa fa-link" />
-          Get Link
-        </div>
-      </li>
+      <ListItem disablePadding>
+        <ListItemButton onClick={onClick}>
+          <ListItemIcon>
+            <InsertLinkIcon />
+          </ListItemIcon>
+          <ListItemText primary="Get Link" />
+        </ListItemButton>
+      </ListItem>
     </>
   )
 }

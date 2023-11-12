@@ -22,5 +22,19 @@ export function formatBytes(bytes, decimals = 2) {
 
   const i = Math.floor(Math.log(bytes) / Math.log(k))
 
-  return `${parseFloat((bytes / k**i).toFixed(dm))} ${sizes[i]}`
+  return `${parseFloat((bytes / k ** i).toFixed(dm))} ${sizes[i]}`
+}
+
+export function formatDate(inputDate) {
+  const dateObject = new Date(inputDate);
+  const options = {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true,
+  };
+  const formattedDate = new Intl.DateTimeFormat('en-US', options).format(dateObject);
+  return formattedDate;
 }

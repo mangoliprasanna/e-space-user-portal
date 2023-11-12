@@ -1,5 +1,10 @@
+import PhotoIcon from '@mui/icons-material/Photo';
+import AudioFileIcon from '@mui/icons-material/AudioFile';
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
+
 const getIconFromType = (type) => {
-  if (!type) return 'fa fa-folder';
+  if (!type) return InsertDriveFileIcon;
   switch (type) {
     case 'image/jpeg':
     case 'image/vnd.microsoft.icon':
@@ -9,22 +14,13 @@ const getIconFromType = (type) => {
     case 'image/tiff':
     case 'image/svg+xml':
     case 'image/png':
-      return 'fa fa-picture-o';
+      return PhotoIcon;
 		case 'audio/mpeg':
-			return 'fa fa-file-audio-o';
+			return AudioFileIcon;
     case 'application/pdf':
-      return 'fa fa-file-pdf-o';
-    case 'application/vnd.ms-excel':
-    case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
-      return 'fa fa-file-excel-o';
-    case 'application/msword':
-    case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
-      return 'fa fa-file-word-o';
-    case 'application/vnd.ms-powerpoint':
-    case 'application/vnd.openxmlformats-officedocument.presentationml.presentation':
-      return 'fa fa-file-powerpoint-o';
+      return PictureAsPdfIcon;
     default:
-      return 'fa fa-file-o';
+      return InsertDriveFileIcon;
   }
 };
 

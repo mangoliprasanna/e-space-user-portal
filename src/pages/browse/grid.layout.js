@@ -1,3 +1,4 @@
+import { Grid } from '@mui/material';
 import FileListItem from '../../components/file-list-item';
 import FolderListItem from '../../components/folder-list-item';
 
@@ -25,10 +26,13 @@ const FileView = ({ files }) => {
       <p className='object-item-title'>
         Files
       </p>
-      <div className='row'>
-        {files.map((e) => <FileListItem key={e} code={e} />)}
-      </div>
-
+      <Grid container spacing={2} columns={{ xs: 4, sm: 9, md: 10 }}>
+        {files.map((e) => (
+          <Grid item xs={2} sm={3} md={2} key={e}>
+            <FileListItem key={e} code={e} />
+          </Grid>)
+        )}
+      </Grid>
     </>
   )
 }
