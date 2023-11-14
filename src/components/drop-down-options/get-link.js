@@ -11,7 +11,7 @@ function GetLinkOption({ config, handleClose }) {
         <ListItemIcon>
           <InsertLinkIcon fontSize="small" />
         </ListItemIcon>
-        <ListItemText>Get Link</ListItemText>
+        <ListItemText>Copy Link</ListItemText>
       </MenuItem>
     </>
   )

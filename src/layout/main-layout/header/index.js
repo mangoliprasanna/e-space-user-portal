@@ -2,20 +2,20 @@ import PropTypes from 'prop-types';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Avatar, Box, ButtonBase } from '@mui/material';
+import { Avatar, Box, Button, ButtonBase } from '@mui/material';
 
 // project imports
 import { IconMenu2 } from '@tabler/icons';
+import useAuth from '../../../hooks/useAuth';
 import LogoSection from '../logo-section';
-import SearchSection from './SearchSection';
-import ProfileSection from './ProfileSection';
+import UploadButton from './upload';
 
 const Header = ({ handleLeftDrawerToggle }) => {
   const theme = useTheme();
+  const { logout } = useAuth();
 
   return (
     <>
-      {/* logo & toggler button */}
       <Box
         sx={{
           width: 228,
@@ -50,15 +50,15 @@ const Header = ({ handleLeftDrawerToggle }) => {
           </Avatar>
         </ButtonBase>
       </Box>
-
+      <UploadButton />
       {/* header search */}
-      <SearchSection />
+      {/* <SearchSection /> */}
+
       <Box sx={{ flexGrow: 1 }} />
       <Box sx={{ flexGrow: 1 }} />
 
-      {/* notification & profile */}
-      {/* <NotificationSection /> */}
-      <ProfileSection />
+      <Button variant="text" color='secondary' onClick={logout} >Logout</Button>
+
     </>
   );
 };
