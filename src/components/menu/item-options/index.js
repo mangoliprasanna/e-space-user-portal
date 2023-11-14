@@ -10,7 +10,7 @@ import TrashItem from './trash'
 import RestoreItem from './restore'
 import DeleteForeverItem from './delete-forever'
 
-function DropdownOptions({ contextMenu, handleClose, config }) {
+function ItemOptionMenu({ contextMenu, handleClose, config }) {
 
   return (
     <>
@@ -56,4 +56,4 @@ function DropdownOptions({ contextMenu, handleClose, config }) {
   )
 }
 
-export default DropdownOptions
+export default ItemOptionMenu

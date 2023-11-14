@@ -10,7 +10,7 @@ import getIconFromType from '../../utils/typeToIcon.utils';
 
 import '../style.css';
 import { formatBytes, formatDate } from '../../utils/upload.utils';
-import DropdownOptions from "../drop-down-options/index";
+import ItemOptionMenu from "../menu/item-options/index";
 
 const FileListItem = ({ code }) => {
   const dispatch = useDispatch();
@@ -70,7 +70,7 @@ const FileListItem = ({ code }) => {
 
         </Card>
 
-        <DropdownOptions handleClose={handleClose} contextMenu={contextMenu} config={config} />
+        <ItemOptionMenu handleClose={handleClose} contextMenu={contextMenu} config={config} />
       </div>
     </>
   );

@@ -9,7 +9,6 @@ import GridLayout from './grid.layout';
 import TableLayout from './table.layout';
 import EmptyLayout from './empty.layout';
 import ErrorLayout from './error.layout';
-import BrowserBreadcrum from './breadcrum';
 
 export default function Browser(param) {
   document.title = `Browse - ESpace`;
@@ -34,13 +33,11 @@ export default function Browser(param) {
 
   return (
     <>
-      {/* <BrowserBreadcrum setGrid={setGridView} type={param.type} isGrid={isGridView} /> */}
-      <section className="content">
-        {hasError === true ? <ErrorLayout /> : <></>}
-        {isLoading === true ? <SpinnerLoader /> : <></>}
-        {hasError !== true && isLoading === false && isEmpty === true ? <EmptyLayout /> : <></>}
-        {isLoading === false && isEmpty === false ? content : <></>}
-      </section>
+      {hasError === true ? <ErrorLayout /> : <></>}
+      {isLoading === true ? <SpinnerLoader /> : <></>}
+      {hasError !== true && isLoading === false && isEmpty === true ? <EmptyLayout /> : <></>}
+      {isLoading === false && isEmpty === false ? content : <></>}
+
     </>
   );
 }

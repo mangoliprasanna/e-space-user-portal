@@ -14,6 +14,7 @@ import MenuList from './MenuList';
 import LogoSection from '../logo-section';
 import config from '../../../config';
 import AnimateButton from '../../../components/button.animation';
+import NewButtonOptionWithMenu from './new-button';
 
 // ==============================|| SIDEBAR DRAWER ||============================== //
 
@@ -36,11 +37,7 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
             paddingRight: '16px'
           }}
         >
-          <Box sx={{ ml: 2, mr: 2, mb: 2 }}>
-            <Button size="large" sx={{ borderRadius: 5 }} fullWidth startIcon={<AddIcon />} variant="contained" color="secondary">
-              New
-            </Button>
-          </Box>
+          <NewButtonOptionWithMenu />
           <MenuList />
 
           <Stack direction="row" justifyContent="center" sx={{ mb: 2 }}>

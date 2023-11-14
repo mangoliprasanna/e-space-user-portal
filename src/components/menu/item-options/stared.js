@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux';
 import { ListItemIcon, ListItemText, MenuItem } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
-import { updateFileApiCall, updateFolderApiCall } from '../../redux/reducers/storage.reducer';
-import ToastHelper from '../../utils/toast.utils';
+import { updateFileApiCall, updateFolderApiCall } from '../../../redux/reducers/storage.reducer';
+import ToastHelper from '../../../utils/toast.utils';
 
 
 function StarItem({ config, handleClose }) {

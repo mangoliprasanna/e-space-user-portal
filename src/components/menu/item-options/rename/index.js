@@ -3,7 +3,7 @@ import { ListItemText, MenuItem } from '@mui/material'
 import ListItemIcon from '@mui/material/ListItemIcon';
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
 import { useDispatch } from 'react-redux';
-import { hideDialog, shodwDialog } from '../../../redux/reducers/dialog.reducer';
+import { hideDialog, shodwDialog } from '../../../../redux/reducers/dialog.reducer';
 import RenameFileForm from './file.rename';
 
 function RenameItem({ config, handleClose }) {

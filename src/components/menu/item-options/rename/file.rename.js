@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from "react-redux";
 import { Button, FormControl, FormHelperText, InputAdornment, OutlinedInput, TextField } from '@mui/material';
-import Spinner from '../../spinner';
+import Spinner from '../../../spinner';
 import {
   fileState,
   renameFileApiCall,
-} from "../../../redux/reducers/storage.reducer";
+} from "../../../../redux/reducers/storage.reducer";
 
 const RenameFileForm = ({ closeDialog, code, name }) => {
   const re = /(?:\.([^.]+))?$/;
