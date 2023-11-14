@@ -55,7 +55,12 @@ const RenameFileForm = ({ closeDialog, code, name }) => {
           </FormControl>
         </div>
         <br />
-        <div>
+
+        <div style={{
+          marginTop: "15px",
+          marginBottom: "15px",
+          float: 'right'
+        }} >
           <Button
             type="submit"
             disabled={disableAction}
