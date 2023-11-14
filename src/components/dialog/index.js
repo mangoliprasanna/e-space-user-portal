@@ -1,17 +1,22 @@
 import * as React from 'react';
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { useSelector } from 'react-redux';
-import { Typography } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { IconButton, Typography } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+
+import { hideDialog } from '../../redux/reducers/dialog.reducer';
 
 export default function GlobalDialog() {
-
+  const dispatch = useDispatch();
   const {
-    open, title, contentText, content, action, fullWidth, maxWidth,
+    open, title, contentText, content, fullWidth, maxWidth,
   } = useSelector((state) => state.dialog);
+  const handleClose = () => {
+    dispatch(hideDialog());
+  }
   return (
     <>
       <Dialog
@@ -20,19 +25,28 @@ export default function GlobalDialog() {
         open={open}
       >
         <DialogTitle>
-          <Typography variant="h4" gutterBottom>
+          <Typography variant="h3" gutterBottom>
             {title}
           </Typography>
         </DialogTitle>
+        <IconButton
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
         <DialogContent>
           {contentText ? <DialogContentText>
             {contentText}
           </DialogContentText> : <></>}
           {content}
         </DialogContent>
-        <DialogActions>
-          {action}
-        </DialogActions>
+      
       </Dialog>
     </>
   )

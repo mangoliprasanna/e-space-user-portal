@@ -1,5 +1,5 @@
 import React from 'react'
-import { Divider, Menu, MenuItem, Paper } from '@mui/material'
+import { Divider, Menu, Paper } from '@mui/material'
 import GetLinkOption from './get-link'
 import StarItem from './stared'
 import RenameItem from './rename'
