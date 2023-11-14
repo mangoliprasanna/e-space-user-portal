@@ -50,7 +50,6 @@ const Header = ({ handleLeftDrawerToggle }) => {
           </Avatar>
         </ButtonBase>
       </Box>
-      <UploadButton />
       {/* header search */}
       {/* <SearchSection /> */}
 

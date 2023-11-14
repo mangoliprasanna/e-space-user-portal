@@ -2,7 +2,8 @@ import PropTypes from 'prop-types';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Box, Chip, Drawer, Stack, useMediaQuery } from '@mui/material';
+import { Box, Button, Chip, Drawer, Stack, useMediaQuery } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 
 // third-party
 import PerfectScrollbar from 'react-perfect-scrollbar';
@@ -11,8 +12,8 @@ import { BrowserView, MobileView } from 'react-device-detect';
 // project imports
 import MenuList from './MenuList';
 import LogoSection from '../logo-section';
-import MenuCard from './MenuCard';
 import config from '../../../config';
+import AnimateButton from '../../../components/button.animation';
 
 // ==============================|| SIDEBAR DRAWER ||============================== //
 
@@ -35,8 +36,13 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
             paddingRight: '16px'
           }}
         >
+          <Box sx={{ ml: 2, mr: 2, mb: 2 }}>
+            <Button size="large" sx={{ borderRadius: 5 }} fullWidth startIcon={<AddIcon />} variant="contained" color="secondary">
+              New
+            </Button>
+          </Box>
           <MenuList />
-          {/* <MenuCard /> */}
+
           <Stack direction="row" justifyContent="center" sx={{ mb: 2 }}>
             <Chip label={process.env.REACT_APP_VERSION} disabled chipcolor="secondary" size="small" sx={{ cursor: 'pointer' }} />
           </Stack>
@@ -45,7 +51,7 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
       <MobileView>
         <Box sx={{ px: 2 }}>
           <MenuList />
-          {/* <MenuCard /> */}
+
           <Stack direction="row" justifyContent="center" sx={{ mb: 2 }}>
             <Chip label={process.env.REACT_APP_VERSION} disabled chipcolor="secondary" size="small" sx={{ cursor: 'pointer' }} />
           </Stack>
