@@ -5,6 +5,7 @@ import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutli
 import { useDispatch } from 'react-redux';
 import { hideDialog, shodwDialog } from '../../../../redux/reducers/dialog.reducer';
 import RenameFileForm from './file.rename';
+import RenameFolderForm from './folder.rename';
 
 function RenameItem({ config, handleClose }) {
   const dispatch = useDispatch();
@@ -24,6 +25,11 @@ function RenameItem({ config, handleClose }) {
     if (config.type) {
       dialogConfig.content = (
         <RenameFileForm closeDialog={closeDialog} name={config.name} code={config.code} />
+      );
+      dispatch(shodwDialog(dialogConfig));
+    } else {
+      dialogConfig.content = (
+        <RenameFolderForm closeDialog={closeDialog} name={config.name} code={config.code} />
       );
       dispatch(shodwDialog(dialogConfig));
     }

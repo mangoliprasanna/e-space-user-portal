@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from "react-redux";
-import { Button, FormControl, FormHelperText, InputAdornment, OutlinedInput, TextField } from '@mui/material';
+import { Button, FormControl, FormHelperText, InputAdornment, OutlinedInput } from '@mui/material';
 import Spinner from '../../../spinner';
 import {
   fileState,
@@ -29,6 +29,7 @@ const RenameFileForm = ({ closeDialog, code, name }) => {
     },
   });
   const disableAction = formik.getFieldProps('fileName').value === name;
+  
   if (isLoading === true) {
     return (
       <Spinner />
