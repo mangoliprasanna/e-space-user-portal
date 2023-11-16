@@ -1,8 +1,7 @@
 import React from 'react';
 import { Stack } from '@mui/system';
-import { Avatar, AvatarGroup, Card, Grid, IconButton, Menu, MenuItem, SvgIcon } from '@mui/material';
+import { Avatar, AvatarGroup, Card, Grid, IconButton, SvgIcon } from '@mui/material';
 import MuiTypography from '@mui/material/Typography';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useDispatch, useSelector } from 'react-redux';
 import { objectByCode } from '../../redux/reducers/object.reducer';

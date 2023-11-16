@@ -44,6 +44,7 @@ export default function GridLayout({ files, folders }) {
   return (
     <>
       <FolderView folders={folders} />
+      <br />
       <FileView files={files} />
     </>
   );
