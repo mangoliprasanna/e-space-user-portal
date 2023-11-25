@@ -59,7 +59,6 @@ const NewFolderForm = ({ closeDialog }) => {
 
         <div style={{
           marginTop: "15px",
-          marginBottom: "15px",
           float: 'right'
         }} >
           <Button

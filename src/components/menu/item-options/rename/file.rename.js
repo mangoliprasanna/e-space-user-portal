@@ -28,7 +28,7 @@ const RenameFileForm = ({ closeDialog, code, name }) => {
         .then(() => closeDialog());
     },
   });
-  const disableAction = formik.getFieldProps('fileName').value === name;
+  const disableAction = formik.getFieldProps('fileName').value === name.replace(/.[^/.]+$/, '');
   
   if (isLoading === true) {
     return (
@@ -59,7 +59,7 @@ const RenameFileForm = ({ closeDialog, code, name }) => {
 
         <div style={{
           marginTop: "15px",
-          marginBottom: "15px",
+          
           float: 'right'
         }} >
           <Button
