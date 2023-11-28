@@ -27,7 +27,7 @@ function ItemOptionMenu({ contextMenu, handleClose, config }) {
       >
         {
           !config.isTrash ?
-            <>
+            (
               <Paper sx={{ width: 220, maxWidth: '100%' }}>
                 <GetLinkOption config={config} handleClose={handleClose} />
                 <StarItem config={config} handleClose={handleClose} />
@@ -39,14 +39,15 @@ function ItemOptionMenu({ contextMenu, handleClose, config }) {
                 <Divider />
                 <TrashItem config={config} handleClose={handleClose} />
               </Paper>
-            </>
-            : <>
+            )
+
+            : (
               <Paper sx={{ width: 220, maxWidth: '100%' }}>
                 <RestoreItem config={config} handleClose={handleClose} />
                 <Divider />
                 <DeleteForeverItem config={config} handleClose={handleClose} />
               </Paper>
-            </>
+            )
         }
 
 

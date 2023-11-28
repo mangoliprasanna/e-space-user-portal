@@ -6,7 +6,7 @@ import UploadProgressItem from './upload-progress-item'
 function UploadProgressDropdown() {
   const { items, isUploading } = useSelector(uploaderState);
   const dispatch = useDispatch();
-  const length = Object.keys(items).length;
+  const {length} = Object.keys(items);
 
   const clearItems = () => {
     dispatch(clearUploadingItems());
@@ -43,9 +43,7 @@ function UploadProgressDropdown() {
           </li>
           <li>
             <ul className="menu">
-              {Object.keys(items).reverse().map((e) => {
-                return (<UploadProgressItem key={e} id={e} config={items[e]} />)
-              })}
+              {Object.keys(items).reverse().map((e) => (<UploadProgressItem key={e} id={e} config={items[e]} />))}
             </ul>
           </li>
         </ul>

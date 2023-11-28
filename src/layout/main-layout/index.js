@@ -13,6 +13,7 @@ import Sidebar from './sidebar';
 
 
 import config from '../../config';
+import UploadProgressDropdown from '../header/upload/upload-progress-dropdown';
 
 // styles
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, open }) => ({
@@ -82,7 +83,7 @@ const MainLayout = () => {
 
       {/* drawer */}
       <Sidebar drawerOpen={!matchDownMd ? leftDrawerOpened : !leftDrawerOpened} drawerToggle={handleLeftDrawerToggle} />
-
+      <UploadProgressDropdown />
       <GlobalDialog />
       {/* main content */}
       <Main theme={theme} open={leftDrawerOpened}>
