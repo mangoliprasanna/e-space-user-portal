@@ -118,7 +118,7 @@ export function browse(key) {
       state.response = {
         files: response.files.map((e) => e.code),
         folders: response.folders.map((e) => e.code),
-        key: response.key,
+        key: response.key || key,
         code: response.code || 'root',
       };
       dispatch(objectAppend(processedData));
